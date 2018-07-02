@@ -4,18 +4,18 @@ public class FirstSecondLargest {
 	public static void main(String args[])
 	{
 		int First=0,Second=0;
-		int number[]={2,4,7,24,12,79,46};
-		for(int i=0; i<number.length;i++)
+		int a[]={2,4,7,24,12,79,46};
+		for(int i=0; i<a.length;i++)
 		{
-			if(First<number[i])
+			if(First<a[i])
 			{
 				Second=First;
-				First=number[i];
+				First=a[i];
 				
 			}
-			if( Second<number[i] && number[i]< First )
+			if( Second<a[i] && a[i]< First )
 			{
-				Second=number[i];
+				Second=a[i];
 			}
 		}
 		
