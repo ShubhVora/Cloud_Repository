@@ -1,0 +1,25 @@
+package com.techlabs.FirstSecondLargest;
+
+public class FirstSecondLargest {
+	public static void main(String args[])
+	{
+		int First=0,Second=0;
+		int a[]={2,4,7,24,12,79,46};
+		for(int i=0; i<a.length;i++)
+		{
+			if(First<a[i])
+			{
+				Second=First;
+				First=a[i];
+				
+			}
+			if( Second<a[i] && a[i]< First )
+			{
+				Second=a[i];
+			}
+		}
+		
+		System.out.println("First Largest Number:"+First+"\nSecond Largest Number:"+Second);
+	}
+
+}
