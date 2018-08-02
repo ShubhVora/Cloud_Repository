@@ -1,0 +1,44 @@
+package com.techlabs.Bank_App;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Bank {
+
+	ArrayList<String> list = new ArrayList<String>();
+	ArrayList<Employee> listOfManager = new ArrayList<Employee>();
+
+	public void load(){
+		LoadFile load = new LoadFile();
+	    list=load.read();
+	    
+	    for(String str: list)
+	    {
+	    	
+	    	String [] temp=str.split(",");
+
+	    	String name= temp[0];
+	    	int code;
+	    	Specialize specialize;
+	    	Date birthDate;
+	    	Date joiningDate;
+	    	Double ctc;
+	    	 boolean workingStatus = false;
+	    }
+	
+	
+	}
+
+	public void addEmployee(Employee employee) {
+		listOfManager.add(employee);
+	}
+
+	public void removeEmployee(Employee employee) {
+		listOfManager.remove(employee);
+	}
+
+	public ArrayList<Employee> getManagerList() {
+		return this.listOfManager;
+	}
+
+}

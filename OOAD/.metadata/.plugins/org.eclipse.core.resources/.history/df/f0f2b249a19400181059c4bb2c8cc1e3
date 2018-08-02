@@ -1,0 +1,10 @@
+package com.techlabs.opencloseprincipal.refactor;
+
+public class EidRate {
+	
+public double getRate(){
+		
+		return 7.0;
+	}
+
+}

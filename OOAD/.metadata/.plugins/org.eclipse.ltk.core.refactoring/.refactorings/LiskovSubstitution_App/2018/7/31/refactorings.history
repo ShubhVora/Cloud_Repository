@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;com.techlabs.lsp.violation.test.Test.java&apos; to &apos;ShapeTest.java&apos;&#x0D;&#x0A;- Original project: &apos;LiskovSubstitution_App&apos;&#x0D;&#x0A;- Original element: &apos;com.techlabs.lsp.violation.test.Test.java&apos;&#x0D;&#x0A;- Renamed element: &apos;com.techlabs.lsp.violation.test.ShapeTest.java&apos;" description="Rename compilation unit &apos;Test.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;com.techlabs.lsp.violation.test{Test.java" name="ShapeTest.java" references="false" stamp="1533033204876" version="1.0"/>
+</session>

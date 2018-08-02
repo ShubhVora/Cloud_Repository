@@ -1,0 +1,17 @@
+package com.techlabs.dipviolation;
+
+public class TaxCalculator {
+	LogType typeAdd;
+	
+	
+	public TaxCalculator(LogType typeAdd){
+		this.typeAdd=typeAdd;
+	}
+	
+	public int Calculate(int amount, int rate){
+		int r = amount/rate;
+		
+		return r;
+	}
+
+}

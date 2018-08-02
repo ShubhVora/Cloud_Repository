@@ -1,0 +1,32 @@
+package com.techlabs.bankapptest;
+
+import java.util.ArrayList;
+
+import com.techlabs.bankapp.Employee;
+import com.techlabs.bankapp.LoadFile;
+import com.techlabs.bankapp.Specialize;
+
+public class LoadFileTest {
+
+	public static void main(String args[]) {
+		LoadFile load = new LoadFile();
+		ArrayList<Employee> list = new ArrayList<Employee>();
+		ArrayList<Employee> newList = new ArrayList<Employee>();
+		Employee employee = new Employee();
+		employee.setName("Shubham");
+		employee.setCode(1);
+		employee.setSpecialize(Specialize.Equity);
+		// employee.setBirthDate();
+		// employee.setJoiningDate();
+		employee.setCtc(10000.0);
+		employee.setWorkingStatus(true);
+
+		load.write(list);
+		newList = load.read();
+
+		for (Employee employee : newList)
+			System.out.println(employee.getName() + employee.getCode() + employee.getSpecialize() + employee.getCtc());
+
+	}
+
+}

@@ -1,0 +1,7 @@
+1531939713708	Rename type 'HashSet'
+1531977780356	Rename field 'roll'
+1531977878565	Rename method 'getRoll'
+1531977896738	Rename method 'setRoll'
+1532081978800	Extract method 'case3'
+1532082002871	Extract method 'case2'
+1532082036886	Extract method 'case1'

@@ -1,0 +1,29 @@
+package com.techlabs.shoppingcart.test;
+
+import com.techlabs.shoppingcart.LineItem;
+import com.techlabs.shoppingcart.Order;
+import com.techlabs.shoppingcart.Product;
+
+public class OrderTest {
+	public static void main(String args[]) {
+		Order order = new Order();
+		Product product = new Product("Laptop", 1, 10, 100);
+		LineItem lineItem = new LineItem(5, 1, product);
+
+		order.addToCart(lineItem);
+
+		for (LineItem lineItemFromArrayList : order.getArrayListOfItemList())
+			System.out.println(lineItemFromArrayList.getQuantity() + " " + lineItemFromArrayList.getProduct());
+
+		order.updateProductQuantityFromCart(product, 2);
+
+		for (LineItem lineItemFromArrayList : order.getArrayListOfItemList())
+			System.out.println(lineItemFromArrayList.getQuantity() + " " + lineItemFromArrayList.getProduct());
+
+		order.deleteProductFromCart(product);
+		for (LineItem lineItemFromArrayList : order.getArrayListOfItemList())
+			System.out.println(lineItemFromArrayList.getQuantity() + " " + lineItemFromArrayList.getProduct());
+
+	}
+
+}

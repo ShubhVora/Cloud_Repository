@@ -1,0 +1,22 @@
+package com.techlabs.reflectionapp.test;
+
+import java.lang.reflect.Method;
+import com.techlabs.reflectionapp.ProTest;
+import com.techlabs.reflectionapp.Foo;
+
+public class ResultTest {
+	public static void main(String args[]) {
+
+		Foo fooObject = new Foo();
+		
+		for(Method method: Foo.class.getMethods() )
+		{
+			if(m.isAnnotationPresent(ProTest.class))
+			{
+				if(m.in)
+			}
+		}
+
+	}
+
+}

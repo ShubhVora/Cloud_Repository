@@ -1,0 +1,12 @@
+package com.techlabs.dipviolation;
+
+import java.time.LocalDateTime;
+
+public class LogType {
+	
+	public void display(LocalDateTime now, String message)
+	{
+		System.out.println(now + " "+ message);
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.techlabs.bankapp;
+
+public class CheckEmployeeDetail {
+
+	public boolean workingStatus(int workStatus) {
+		if (workStatus == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+}

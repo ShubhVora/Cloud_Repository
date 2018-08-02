@@ -1,0 +1,9 @@
+package com.techlabs.dipviolation;
+
+import java.time.LocalDateTime;
+
+public class LogType {
+	
+	
+
+}

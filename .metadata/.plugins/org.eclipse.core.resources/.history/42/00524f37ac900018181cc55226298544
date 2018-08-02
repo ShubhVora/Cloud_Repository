@@ -1,0 +1,17 @@
+package com.techlabs.Shopping_Cart;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class LineItemTest {
+
+	@Test
+	public void testTotalCostOfProduct() {
+		Product product = new Product("Laptop",1,10,100);
+		LineItem lineItem = new LineItem(5,2,product);
+		
+		assertTrue(450==lineItem.calculateTotalProductCost());
+	}
+
+}

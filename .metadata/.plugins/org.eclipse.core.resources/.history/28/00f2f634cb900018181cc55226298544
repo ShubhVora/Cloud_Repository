@@ -1,0 +1,46 @@
+package com.techlabs.bankapp;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+public class LoadFile {
+
+	public ArrayList<Employee> read() {
+
+		ArrayList<Employee> listOfManager = new ArrayList<Employee>();
+
+		try {
+
+			FileInputStream file = new FileInputStream("EmployeeData.ser");
+			ObjectInputStream out = new ObjectInputStream(file);
+			listOfManager.add((Employee) out.readObject());
+			out.close();
+			file.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return listOfManager;
+	}
+
+	public void write(ArrayList<Employee> list) {
+
+		try {
+			for (Employee object : list) {
+
+				FileOutputStream fr = new FileOutputStream("EmployeeData.ser");
+				ObjectOutputStream out = new ObjectOutputStream(fr);
+				out.writeObject(object);
+				out.close();
+				fr.close();
+			}
+		} catch (
+
+		Exception e) {
+			System.out.println(e);
+		}
+	}
+
+}

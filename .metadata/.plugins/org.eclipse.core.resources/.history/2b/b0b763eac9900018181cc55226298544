@@ -1,0 +1,42 @@
+package com.techlabs.bankapp;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+public class LoadFile {
+
+	public ArrayList<Employee> read() throws Exception {
+
+		ArrayList<Employee> listOfManager = new ArrayList<Employee>();
+
+		FileInputStream file = new FileInputStream("EmployeeData.csv");
+		ObjectInputStream out = new ObjectInputStream(file);
+		listOfManager = (ArrayList<Employee>) out.readObject();
+		out.close();
+		file.close();
+
+		return listOfManager;
+	}
+
+	public void write(ArrayList<Employee> list) {
+
+		try {
+			for (Employee object : list) {
+
+				FileOutputStream file = new FileOutputStream("EmployeeData.csv");
+				ObjectOutputStream out = new ObjectOutputStream(file);
+				out.writeObject(object);
+				out.close();
+				fr.close();
+			}
+		} catch (
+
+		Exception e) {
+			System.out.println(e);
+		}
+	}
+
+}

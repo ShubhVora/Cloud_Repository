@@ -1,0 +1,70 @@
+package com.techlabs.bankapp;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class Employee implements Serializable {
+	private String name;
+	private int code;
+	private Specialize specialize;
+	private Date birthDate, joiningDate;
+	private Double ctc;
+	private boolean workingStatus = false;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
+	public Specialize getSpecialize() {
+		return specialize;
+	}
+
+	public void setSpecialize(Specialize specialize) {
+		this.specialize = specialize;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public Date getJoiningDate() {
+		return joiningDate;
+	}
+
+	public void setJoiningDate(Date joiningDate) {
+		this.joiningDate = joiningDate;
+	}
+
+	public Double getCtc() {
+		return ctc;
+	}
+
+	public void setCtc(Double ctc) {
+		this.ctc = ctc;
+	}
+
+	public boolean isWorkingStatus() {
+		return workingStatus;
+	}
+
+	public void setWorkingStatus(boolean workingStatus) {
+		this.workingStatus = workingStatus;
+	}
+
+}

@@ -1,0 +1,19 @@
+package com.techlabs.shoppingcart;
+
+import java.util.ArrayList;
+
+public class PrintDetail {
+
+	public void dispayCustomerOrder(Customer customer) {
+		ArrayList<LineItem> cartProduct = customer.getOrder().getArrayListOfItemList();
+
+		System.out.println("Product Name\tProductQuantity\tTotal Product Cost");
+		for (LineItem lineItem : cartProduct) {
+			System.out.println(lineItem.getProduct() + "\t" + lineItem.getQuantity() + "\tRs."
+					+ lineItem.calculateTotalProductCost());
+
+		}
+		System.out.println("Total cost of order:\tRs."+customer.getOrder().getTotalCost());
+	}
+
+}

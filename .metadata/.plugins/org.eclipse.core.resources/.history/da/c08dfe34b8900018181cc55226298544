@@ -1,0 +1,7 @@
+package com.techlabs.Bank_App;
+
+public class Bank {
+	
+	ArrayList<Employee> listOfManager = new ArrayList<Employee>();
+
+}

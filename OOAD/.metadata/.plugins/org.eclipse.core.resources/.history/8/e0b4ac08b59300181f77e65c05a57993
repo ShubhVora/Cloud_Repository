@@ -1,0 +1,21 @@
+package com.techlabs.dogdoug.chapterfour;
+
+import java.util.Iterator;
+import java.util.List;
+
+public class BarkRecognizer {
+
+	private DogDoor door;
+
+	public BarkRecognizer(DogDoor dogDoor) {
+		this.door = dogDoor;
+
+	}
+
+	public void recognize(Bark bark) {
+		System.out.println("   BarkRecognizor :Heard  a '" + bark.getSound() + "'");
+		List allowedbarks = door.getAllowedBark();
+		for(Iterator i =allowedBarks.getIterator();)
+	}
+
+}

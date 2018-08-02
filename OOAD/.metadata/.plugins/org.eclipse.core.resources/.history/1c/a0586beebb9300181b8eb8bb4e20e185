@@ -1,0 +1,10 @@
+package com.techlabs.chapterfive;
+
+public class Guitar implements Comparable<Guitar> extends Instrument{
+
+	public Guitar(String serialNumber, double price, GuitarSpec spec) {
+	  super(serialNumber, price, spec);
+	}
+
+	
+}

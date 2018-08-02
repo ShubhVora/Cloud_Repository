@@ -1,0 +1,60 @@
+package com.techlabs.bankapp;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
+
+public class ManagerTest {
+
+	public static void main(String args[]) throws Exception {
+
+		Double ctc = 0.0;
+		CheckEmployeeDetail check = new CheckEmployeeDetail();
+		Scanner sc = new Scanner(System.in);
+		ArrayList<Employee> list = new ArrayList<Employee>();
+		System.out.println("Enter the details of Employee");
+		System.out.println("Enter name of Employee");
+		String name = sc.next();
+		System.out.println("Enter Birthdate of Employee");
+		String birthDate = sc.next();
+		System.out.println("Enter JoiningDate of Employee");
+		String joiningDate = sc.next();
+		System.out.println("Enter Working Status of employee 1 for yes & 2 for no");
+		int working = sc.nextInt();
+		boolean workingStatus = false;
+		if (check.workingStatus(working)) {
+			System.out.println("Enter CTC of Employee");
+			ctc = sc.nextDouble();
+			workingStatus = true;
+		}
+		DateFormat df = new SimpleDateFormat("DD/MM/YYYY");
+		Date birth = df.parse(birthDate);
+		Date joining = df.parse(joiningDate);
+		if (check.joiningIsPossible(birth, joining)) {
+			Employee employee = new Employee();
+			employee.setName(name);
+			employee.setCode();
+			employee.setBirthDate(birth);
+			employee.setJoiningDate(joining);
+			employee.setWorkingStatus(workingStatus);
+			employee.setCtc(ctc);
+			employee.setSpecialize(Specialize.Insurance);
+			list.add(employee);
+		}
+
+		Display(list);
+
+	}
+
+	public static void Display(ArrayList<Employee> list) {
+		System.out.println("Employee Name\t" + "Employee Code\t" + "Employee Joining Date\t" + "Employee Birthdate\t"
+				+ "Employee Working Status\t" + "Employee CTC");
+		for (Employee employee : list) {
+			System.out.println(employee.getName() + "\t" + employee.getCode() + "\t" + employee.getJoiningDate() + "\t"
+					+ employee.getBirthDate() + "\t" + employee.isWorkingStatus() + "\t" + employee.getCtc());
+		}
+	}
+
+}

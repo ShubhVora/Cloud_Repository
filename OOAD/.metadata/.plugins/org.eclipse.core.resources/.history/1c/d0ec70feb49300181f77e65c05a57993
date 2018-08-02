@@ -1,0 +1,17 @@
+package com.techlabs.dogdoug.chapterfour;
+
+public class BarkRecognizer {
+
+	private DogDoor door;
+
+	public BarkRecognizer(DogDoor dogDoor) {
+		this.door = dogDoor;
+
+	}
+
+	public void recognize(Bark bark) {
+		System.out.println("   BarkRecognizor :Heard  a '" + bark.getSound() + "'");
+		door.open();
+	}
+
+}

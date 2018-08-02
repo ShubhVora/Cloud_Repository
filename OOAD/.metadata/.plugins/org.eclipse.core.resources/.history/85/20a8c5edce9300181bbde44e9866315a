@@ -1,0 +1,61 @@
+package com.techlabs.chapterfive;
+
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Inventory {
+	private List guitars;
+
+	public Inventory() {
+		guitars = new LinkedList();
+	}
+
+	public void addInstrument(String serialNumber, double price, InstrumentSpec spec) {
+		Instrument instrument =null;
+		if(spec instanceof GuitarSpec)
+			instrument= new Guitar(serialNumber, price, spec);
+		else if(spec instanceof MandolinSpec)
+			instrument= new Mandolin(serialNumber, price, spec);
+		
+		instrument.add(instrument);
+	}
+
+	public Instrument getInstrument(String serialNumber) {
+		for (Iterator i = guitars.iterator(); i.hasNext();) {
+			Instrument instrument = (Instrument) i.next();
+			if (instrument.getSerialNumber().equals(serialNumber))
+				return instrument;
+		}
+		return null;
+	}
+
+	public List search(GuitarSpec searchSpec) {
+		List<Guitar> matchingList = new LinkedList();
+		for (Iterator i = guitars.iterator(); i.hasNext();) {
+			Guitar guitar = (Guitar) i.next();
+			if (guitar.getSpec().matches(searchSpec))
+				matchingList.add(guitar);
+		}
+
+		return matchingList;
+	}
+
+	public List search(MandolinSpec searchSpec) {
+		List matchingMandolins = new LinkedList();
+		for (Iterator i = guitars.iterator(); i.hasNext();) {
+			Mandolin mandolin = (Mandolin) i.next();
+			if (mandolin.getSpec().matches(searchSpec))
+				matchingMandolins.add(mandolin);
+		}
+
+		return matchingMandolins;
+	}
+
+	public List getList() {
+		return this.guitars;
+	}
+
+
+}

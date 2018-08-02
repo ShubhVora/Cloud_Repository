@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Timer"/>
+<fullyQualifiedTypeName name="java.util.TimerTask"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="javax.jws.soap.SOAPBinding.Style"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="com.techlabs.chapterfive.parttwo.Wood"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="com.techlabs.opencloseprincipal.refactor.FixedDeposit"/>
+<fullyQualifiedTypeName name="com.techlabs.opencloseprincipal.refactor.NormalRate"/>
+<fullyQualifiedTypeName name="com.techlabs.opencloseprincipal.refactor.EidRate"/>
+<fullyQualifiedTypeName name="com.techlabs.opencloseprincipal.refactor.DiwaliRate"/>
+<fullyQualifiedTypeName name="com.techlabs.lsp.violation.Rectangle"/>
+<fullyQualifiedTypeName name="com.techlabs.lsp.violation.Square"/>
+<fullyQualifiedTypeName name="com.techlabs.lsp.refactor.Rectangle"/>
+<fullyQualifiedTypeName name="com.techlabs.lsp.refactor.Square"/>
+<fullyQualifiedTypeName name="com.techlabs.isp.violation.IWorker"/>
+<fullyQualifiedTypeName name="com.techlabs.isp.violation.Robot"/>
+<fullyQualifiedTypeName name="com.techlabs.isp.violation.Manager"/>
+<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+<fullyQualifiedTypeName name="com.techlabs.isp.refactor.Manager"/>
+<fullyQualifiedTypeName name="com.techlabs.isp.refactor.Robot"/>
+<fullyQualifiedTypeName name="com.techlabs.isp.refactor.IWorker"/>
+<fullyQualifiedTypeName name="com.techlabs.isp.refactor.IWorkable"/>
+<fullyQualifiedTypeName name="com.techlabs.isp.refactor.IEatable"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.time.LocalDate"/>
+<fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+<fullyQualifiedTypeName name="com.techlabs.dipviolation.TaxCalculator"/>
+<fullyQualifiedTypeName name="com.techlabs.dipviolation.LogType"/>
+<fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+<fullyQualifiedTypeName name="com.techlabs.refactor.TaxCalculator"/>
+<fullyQualifiedTypeName name="com.techlabs.refactor.Xml"/>
+</qualifiedTypeNameHistroy>

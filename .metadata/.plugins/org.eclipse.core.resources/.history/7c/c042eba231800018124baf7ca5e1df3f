@@ -1,0 +1,30 @@
+package com.techlabs.Player;
+
+public class Player {
+	
+	private String name;
+	private int age, playerId;
+	private static int PlayerId=1;
+	
+	Player(String name, int age)
+	{
+		this.name=name;
+		this.age=age;
+		this.playerId=PlayerId;
+		PlayerId++;
+	}
+	
+	public String getName()
+	{
+		return this.name;
+	}
+	public int getAge()
+	{
+		return this.age;
+	}
+	public int getPlayerId()
+	{
+		return this.playerId;
+	}
+
+}

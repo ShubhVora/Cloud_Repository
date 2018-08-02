@@ -1,0 +1,5 @@
+package com.techlabs.lsp.violation;
+
+public class Rectangle {
+
+}

@@ -1,0 +1,28 @@
+package com.techlabs.Bank_App;
+
+import java.util.ArrayList;
+
+public class Bank {
+
+	ArrayList<String> list = new ArrayList<String>();
+	ArrayList<Employee> listOfManager = new ArrayList<Employee>();
+
+	public void load() {
+		LoadFile load = new LoadFile();
+		listOfManager = load.read();
+
+	}
+
+	public void addEmployee(Employee employee) {
+		listOfManager.add(employee);
+	}
+
+	public void removeEmployee(Employee employee) {
+		listOfManager.remove(employee);
+	}
+
+	public ArrayList<Employee> getManagerList() {
+		return this.listOfManager;
+	}
+
+}

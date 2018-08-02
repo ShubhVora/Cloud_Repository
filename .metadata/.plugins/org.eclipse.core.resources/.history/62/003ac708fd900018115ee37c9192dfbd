@@ -1,0 +1,11 @@
+package com.techlabs.shoppingcart.test;
+
+import com.techlabs.shoppingcart.Order;
+
+public class OrderTest {
+	public static void main(String args[]) {
+		Order order = new Order();
+		LineItem lineItem = new LineItem 
+	}
+
+}

@@ -1,0 +1,11 @@
+package com.techlabs.Bank_App;
+
+import java.util.Date;
+
+public class Employee {
+	private String name;
+	private int code;
+	private Specialize specialize;
+	private Date birthDate, joiningDate;
+
+}

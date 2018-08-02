@@ -1,0 +1,23 @@
+package com.techlabs.dipviolation;
+
+public enum LogType {
+	
+	WIN,TXT,XML;
+	
+	public String toString()
+	{
+		switch(this)
+		{
+		case WIN:
+			return("It is in WIN logger");
+		case TXT:
+			return ("It is in TXT logger ");
+
+		case XML:
+			return("It is XML logger");
+			default:
+				return "No error is generated";
+		}
+	}
+
+}

@@ -1,0 +1,33 @@
+package com.techlabs.chapterfive;
+
+public class InsturmentSpec {
+	
+	private Builder builder;
+	private String model;
+	private Type type;
+	private Wood backWood, topWood;
+	
+	public boolean matches(InstrumentSpec otherSpec) {
+		if (this.builder != otherSpec.getBuilder())
+			return false;
+		if ((model != null) && (!model.equals("")) && (!model.toLowerCase().equals(otherSpec.getModel().toLowerCase())))
+			return false;
+
+		if (type != otherSpec.getType())
+			return false;
+
+		if (backWood != otherSpec.getBackWood())
+			return false;
+
+		if (topWood != otherSpec.getTopWood())
+			return false;
+
+		if (numString != otherSpec.getNumString())
+			return false;
+
+		return true;
+	}
+
+	
+
+}

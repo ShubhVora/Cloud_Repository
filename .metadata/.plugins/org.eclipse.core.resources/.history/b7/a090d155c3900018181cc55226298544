@@ -1,0 +1,17 @@
+package com.techlabs.Bankapptest;
+
+import com.techlabs.Bankapp;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class LoadFileTest {
+
+	@Test
+	public void testWrite() {
+	  LoadFile loadFile = new LoadFile();
+	  
+	}
+
+}

@@ -1,0 +1,10 @@
+package com.techlabs.dipviolation;
+
+import java.time.LocalDateTime;
+
+public class Xml {
+	public void display(LocalDateTime now){
+   	 System.out.println(now +" It is in XML");
+    }
+
+}

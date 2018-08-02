@@ -1,0 +1,9 @@
+package com.techlabs.Shopping_Cart;
+
+public class ProductTest {
+	public static void main(String args[])
+	{
+		Product product = new Product("Laptop");
+	}
+
+}

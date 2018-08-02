@@ -1,0 +1,21 @@
+package com.techlabs.shoppingcart;
+
+import java.util.ArrayList;
+
+public class Customer {
+	private String name, address;
+	private int contact;
+
+	ArrayList<LineItem> customerOrder = new ArrayList<LineItem>();
+
+	public Customer(String name, String address, int contact) {
+		this.name = name;
+		this.address = address;
+		this.contact = contact;
+	}
+
+	public void placeCustomerOrder(){
+		double totalCost = customerOrder.get
+	}
+
+}

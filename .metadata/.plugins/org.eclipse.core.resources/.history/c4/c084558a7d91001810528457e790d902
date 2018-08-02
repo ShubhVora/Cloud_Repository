@@ -1,0 +1,49 @@
+package com.techlabs.shoppingcart;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Order {
+	private Date date;
+	private ArrayList<LineItem> cartProduct = new ArrayList<LineItem>();
+
+	public Order(Date date) {
+		this.date = date;
+	}
+
+	public void addToCart(LineItem lineItem) {
+		cartProduct.add(lineItem);
+
+	}
+
+	public void deleteProductFromCart(Product product) {
+
+		for (LineItem lineItem : cartProduct) {
+			if (lineItem.getProduct() == product) {
+				cartProduct.remove(lineItem);
+			}
+		}
+	}
+
+	public void updateProductQuantityFromCart(Product product, int quantity) {
+
+		for (LineItem lineItem : cartProduct) {
+			if (lineItem.getProduct() == product) {
+				lineItem.setQuantity(quantity);
+			}
+		}
+
+	}
+
+	public ArrayList<LineItem> getArrayListOfItemList() {
+		return this.cartProduct;
+	}
+
+	public double getTotalCost() {
+		double totalCost = 0.0;
+		for (LineItem lineItem : cartProduct) {
+			totalCost += lineItem.calculateTotalProductCost();
+		}
+		return totalCost;
+	}
+}

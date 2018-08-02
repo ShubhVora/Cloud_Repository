@@ -1,0 +1,16 @@
+package com.techlabs.bankapp.test;
+
+import java.util.ArrayList;
+
+import com.techlabs.bankapp.Manager;
+
+public class BankTest {
+	public static void main(String args[]) {
+
+		ArrayList<Manager> listOfManager = new ArrayList<Manager>();
+
+		listOfManager.add(manager);
+
+	}
+
+}

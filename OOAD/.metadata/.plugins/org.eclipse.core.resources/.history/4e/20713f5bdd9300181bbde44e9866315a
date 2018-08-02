@@ -1,0 +1,19 @@
+package com.techlabs.opencloseprincipal.refactor;
+
+public class CalulateRate {
+	public double findRate()
+	{
+		if(festival.toString().equals("holi"))
+		{
+		  return 8.0;
+		}else if(festival.toString().equals("newyear"))
+		{
+			return 9.0;
+		}else if(festival.toString().equals("normal")){
+			return 7.0;
+		}else
+			{
+			return 0.0;
+			}
+	}
+}

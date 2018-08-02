@@ -1,0 +1,7 @@
+package com.techlabs.dipviolation;
+
+public class Win {
+     public void display(LocalDateTime now){
+    	 System.out.println("It is in WIN ");
+     }
+}

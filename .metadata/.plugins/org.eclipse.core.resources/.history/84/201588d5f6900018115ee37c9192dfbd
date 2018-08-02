@@ -1,0 +1,16 @@
+package com.techlabs.Shopping_Cart;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+public class ProductTest {
+
+	@Test
+	public void testPriceAfterDiscount() {
+		Product product = new Product("Laptop", 1, 10, 100);
+
+		assertTrue(90 == product.getDiscountPrice());
+	}
+
+}

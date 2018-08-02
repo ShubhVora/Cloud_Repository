@@ -1,0 +1,61 @@
+package com.techlabs.shoppingcart;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+
+public class Order {
+	private ArrayList<LineItem> cartProduct = new ArrayList<LineItem>();
+
+	public void addToCart(LineItem lineItem) {
+		cartProduct.add(lineItem);
+
+	}
+
+	public void deleteProductFromCart(Product product) {
+		/*
+		 * for (Map.Entry<Integer, LineItem> entry :
+		 * this.arrayListOfLineItem.entrySet()) { Product productOfLine =
+		 * entry.getValue().getProduct();
+		 * 
+		 * if (productOfLine == product) { arrayListOfLineItem.remove(entry); }
+		 * }
+		 */
+		for (LineItem lineItem : cartProduct) {
+			if (lineItem.getProduct() == product) {
+				cartProduct.remove(lineItem);
+			}
+		}
+	}
+
+	public void updateProductQuantityFromCart(Product product, int quantity) {
+		/*
+		 * for (Map.Entry<Integer, LineItem> entry :
+		 * this.arrayListOfLineItem.entrySet()) { Product productOfLine =
+		 * entry.getValue().getProduct();
+		 * 
+		 * if (productOfLine == product) {
+		 * entry.getValue().setQuantity(quantity); } }
+		 */
+
+		for (LineItem lineItem : cartProduct) {
+			if (lineItem.getProduct() == product) {
+				lineItem.setQuantity(quantity);
+			}
+		}
+
+	}
+
+	public ArrayList<LineItem> getArrayListOfItemList() {
+		return this.cartProduct;
+	}
+	
+	public double totalCost(){
+		 double totalCost=0.0;
+		for(LineItem lineItem: cartProduct)
+		{
+		 totalCost += lineItem.calculateTotalProductCost(); 
+		}
+		return totalCost;
+	}
+}

@@ -1,0 +1,19 @@
+package com.techlabs.opencloseprincipal.violation;
+
+public enum FestivalType {
+     HOLI,NEWYEAR,NORMAL;
+	
+	public double toString()
+	{
+		switch(this){
+		case HOLI:
+			return 8.0;
+		case NEWYEAR:
+			return 9.0;
+		case NORMAL:
+			return 7.0;
+		default:
+			return 0.0;
+		}
+	}
+}

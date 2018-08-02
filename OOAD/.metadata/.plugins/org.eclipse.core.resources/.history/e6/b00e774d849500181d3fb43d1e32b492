@@ -1,0 +1,7 @@
+package com.techlabs.dipviolation;
+
+public class Win {
+     public void display(){
+    	 System.out.println("It is in Win Class");
+     }
+}

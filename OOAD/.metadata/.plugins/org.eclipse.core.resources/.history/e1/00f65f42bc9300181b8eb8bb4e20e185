@@ -1,0 +1,11 @@
+package com.techlabs.chapterfive;
+
+public class InsturmentSpec {
+	
+	private Builder builder;
+	private String model;
+	private Type type;
+	private Wood backWood, topWood;
+	
+
+}
