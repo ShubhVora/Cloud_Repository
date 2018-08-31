@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;t&apos; in &apos;com.techlabs.chaptertwo.DVDPlayerTestDrive.main(...)&apos; to &apos;d&apos;&#x0D;&#x0A;- Original project: &apos;chaptertwo&apos;&#x0D;&#x0A;- Original element: &apos;com.techlabs.chaptertwo.DVDPlayerTestDrive.main(String[]).t&apos;&#x0D;&#x0A;- Renamed element: &apos;t&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;t&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.techlabs.chaptertwo{DVDPlayerTestDrive.java[DVDPlayerTestDrive~main~\[QString;@t!116!145!126!126!QDVDPlayer;!0!false" name="d" references="true" stamp="1534246052683" version="1.0"/>
+</session>

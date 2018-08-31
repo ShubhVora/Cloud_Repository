@@ -1,28 +1,25 @@
 package com.techlabs.EmployeeReflection;
 
 public class Employee {
-	
-	private String name,department;
+
+	private String name, department;
 	private int salary;
-	
-	Employee(String name, String department, int salary)
-	{
-		this.name=name;
-		this.department=department;
-		this.salary=salary;
+
+	Employee(String name, String department, int salary) {
+		this.name = name;
+		this.department = department;
+		this.salary = salary;
 	}
-	
-	
-	
-	public int getSalary()
-	{
+
+	public int getSalary() {
 		return this.salary;
 	}
-	public String getName()
-	{
+
+	public String getName() {
 		return this.name;
-	}public String getDepartment()
-	{
+	}
+
+	public String getDepartment() {
 		return this.department;
 	}
 

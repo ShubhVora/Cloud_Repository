@@ -2,6 +2,8 @@ package com.techlabs.RectangleTest1;
 
 import java.util.*;
 
+import com.techlabs.Rectangle.Rectangle;
+
 public class RectangleTest1 {
 
 	public static void main(String Args[]) {

@@ -1,6 +1,7 @@
 package com.techlabs.RTO;
 
-import java.io.*;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Set;
@@ -8,11 +9,12 @@ import java.util.Set;
 public class Database {
 	public void write(ArrayList<RTO> list) {
 		try {
-			FileReader file = new FileReader("db.properties");
+			FileWriter file = new FileWriter("db.properties");
 			Properties p = new Properties();
 			for (int i = 0; i < list.size(); i++) {
 				p.setProperty(list.get(i).getCode(), list.get(i).getState());
 			}
+			p.store(file, "State List with Code");
 			file.close();
 
 		} catch (Exception e) {

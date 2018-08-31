@@ -1,7 +1,0 @@
-package com.techlabs.lsp.refactor;
-
-public interface IPolygon {
-	
-	public void calculateArea();
-
-}

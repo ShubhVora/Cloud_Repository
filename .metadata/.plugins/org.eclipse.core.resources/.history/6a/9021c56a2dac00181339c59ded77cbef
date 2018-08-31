@@ -1,0 +1,54 @@
+package com.techlabs.employedataanalyzer.test;
+
+import java.util.ArrayList;
+
+import com.techlabs.employeedataanalyzer.DiskLoader;
+import com.techlabs.employeedataanalyzer.Employee;
+import com.techlabs.employeedataanalyzer.EmployeeSorter;
+import com.techlabs.employeedataanalyzer.Parser;
+
+public class Test {
+
+	public static void main(String args[]) {
+		ArrayList<Employee> listDisk = new ArrayList<Employee>();
+
+		DiskLoader diskloader = new DiskLoader();
+
+		Parser parser1 = new Parser(diskloader);
+
+		listDisk = parser1.getRecords(parser1.getParserList());
+
+		EmployeeSorter sortObject = new EmployeeSorter();
+
+		ArrayList<Employee> parentList = new ArrayList<Employee>();
+
+		parentList = sortObject.sortEmployee(listDisk);
+		System.out.println("\n\nId " + "Name " + "Designation " + "ManagerId " + "DOJ " + "Salary " + "DeptNumber \n");
+		int countSpace = 0;
+		display(parentList, countSpace);
+
+	}
+
+	public static void display(ArrayList<Employee> parentList, int countSpace) {
+
+		for (Employee employee : parentList) {
+			String s = "";
+			s = countSpace(countSpace, s);
+			System.out.println(s + employee.getId() + employee.getName() + employee.getDesignation()
+					+ employee.getManagerID() + employee.getDOJ() + employee.getSalary() + employee.getDeptNo());
+			if (!employee.getChildEmployeeList().isEmpty())
+				countSpace++;
+			display(employee.getChildEmployeeList(), countSpace);
+			if (!employee.getChildEmployeeList().isEmpty())
+				countSpace--;
+
+		}
+	}
+
+	private static String countSpace(int countSpace, String s) {
+		for (int i = 0; i < countSpace; i++) {
+			s += "\t";
+		}
+		return s;
+	}
+}

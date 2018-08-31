@@ -1,9 +1,0 @@
-package com.techlabs.opencloseprincipal.refactor;
-
-public class NormalRate implements IRate {
-	
-	public double Rate(){
-		
-	}
-
-}

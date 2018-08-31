@@ -1,0 +1,5 @@
+package com.techlabs.employeedataanalyzer;
+
+public interface IPerson {
+	public void generateHierarchyStructure();
+}

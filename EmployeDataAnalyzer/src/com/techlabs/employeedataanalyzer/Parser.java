@@ -1,0 +1,36 @@
+package com.techlabs.employeedataanalyzer;
+
+import java.util.ArrayList;
+
+public class Parser {
+
+	private ArrayList<String> list;
+	private ArrayList<Employee> employeeList = new ArrayList<Employee>();
+
+	public Parser(ILoader il) {
+		list = il.load();
+	}
+
+	public ArrayList<Employee> getRecords(ArrayList<String> list12) {
+		for (String str : list12) {
+			String split[] = str.split(",");
+
+			String id = split[0];
+			String name = split[1];
+			String designation = split[2];
+			String managerID = split[3];
+			String DOJ = split[4];
+			float salary = Float.parseFloat(split[5]);
+			String Null = split[6];
+			int deptNo = Integer.parseInt(split[7]);
+			employeeList.add(new Employee(id, name, designation, managerID, DOJ, salary, Null, deptNo));
+
+		}
+
+		return employeeList;
+	}
+
+	public ArrayList<String> getParserList() {
+		return list;
+	}
+}

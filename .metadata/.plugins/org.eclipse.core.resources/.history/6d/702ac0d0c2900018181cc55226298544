@@ -1,6 +1,0 @@
-package com.techlabs.Bank_App;
-
-public enum Specialize {
-	Insurance, Equity, Mutal_Fund;
-
-}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;linkedhashMap&apos; in &apos;com.techlabs.Map_Integer.Test.Case1(...)&apos; to &apos;hashMap&apos;&#x0D;&#x0A;- Original project: &apos;HashMap_Integer&apos;&#x0D;&#x0A;- Original element: &apos;com.techlabs.Map_Integer.Test.Case1(HashMapClass).linkedhashMap&apos;&#x0D;&#x0A;- Renamed element: &apos;linkedhashMap&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;linkedhashMap&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.techlabs.Map_Integer{Test.java[Test~Case1~QHashMapClass;@linkedhashMap!1863!1934!1888!1900!QHashMap\&lt;QInteger;QString;&gt;;!0!false" name="hashMap" references="true" stamp="1534923121203" version="1.0"/>
+</session>

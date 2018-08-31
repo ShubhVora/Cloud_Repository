@@ -16,10 +16,8 @@ public class College implements ISalary {
 	}
 
 	public ArrayList<Professor> calculateSalary(ArrayList<Professor> profList) {
-
 		for (Professor temp : profList)
 			temp.setSalary(temp.getSalary() * temp.getHour());
-
 		return profList;
 	}
 

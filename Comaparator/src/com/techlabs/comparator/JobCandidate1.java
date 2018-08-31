@@ -2,37 +2,46 @@ package com.techlabs.comparator;
 
 import java.util.Comparator;
 
-public class JobCandidate1 implements Comparator {
+public class JobCandidate1 implements Comparator<JobCandidate1> {
 
-    private String name;
-	private int salary,id,age;
+	private String name;
+	private int salary, id, age;
+
+	JobCandidate1() {
+
+	}
 
 	JobCandidate1(String name, int salary, int id, int age) {
 		this.name = name;
-		this.salary=salary;
-		this.id=id;
-		this.age=age;
+		this.salary = salary;
+		this.id = id;
+		this.age = age;
 	}
-	
 
-	
-	public String getName()
-	{
+	@Override
+	public int compare(JobCandidate1 candidate1, JobCandidate1 candidate2) {
+		if (candidate1.getAge() < candidate2.getAge())
+			return -1;
+		else if (candidate1.getAge() > candidate2.getAge())
+			return 1;
+		else
+			return 0;
+	}
+
+	public String getName() {
 		return this.name;
 	}
-	public int getSalary()
-	{
+
+	public int getSalary() {
 		return this.salary;
 	}
-	public int getId()
-	{
+
+	public int getId() {
 		return this.id;
 	}
-	public int getAge()
-	{
+
+	public int getAge() {
 		return this.age;
 	}
 
-
-	
 }

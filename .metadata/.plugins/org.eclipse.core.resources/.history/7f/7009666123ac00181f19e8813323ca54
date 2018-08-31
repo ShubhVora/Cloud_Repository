@@ -1,0 +1,43 @@
+package com.techlabs.employeedataanalyzer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class EmployeeSorter {
+
+	public ArrayList<Employee> sortEmployee(ArrayList<Employee> employeeList) {
+
+		HashMap<String, Employee> hm = new HashMap<String, Employee>();
+		ArrayList<Employee> rootEmployee = new ArrayList<Employee>();
+
+		for (Employee employee : employeeList) {
+			String temp = employee.getDesignation();
+			if (temp.equals("'PRESIDENT'")) {
+				hm.put(employee.getId(), employee);
+				rootEmployee.add(employee);
+			}
+			if (temp.equals("'MANAGER'")) {
+				hm.put(employee.getId(), employee);
+			}
+			if (temp.equals("'CLERK'")) {
+				hm.put(employee.getId(), employee);
+			}
+			if (temp.equals("'ANALYST'")) {
+				hm.put(employee.getId(), employee);
+			}
+			if (temp.equals("'SALESMAN'")) {
+				hm.put(employee.getId(), employee);
+			}
+		}
+
+		for (Employee employee : employeeList) {
+			String temp = employee.getManagerID();
+			if (hm.containsKey(temp) && !temp.equals("NULL")) {
+				Employee object = hm.get(temp);
+				object.addChildEmployee(employee);
+			}
+		}
+
+		return rootEmployee;
+	}
+}

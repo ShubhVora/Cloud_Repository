@@ -1,0 +1,13 @@
+1535539813228	Extract method 'sortEmployees'
+1535540029077	Extract method 'addRootEmployee'
+1535540959565	Rename method 'isEmploymentPresent'
+1535548202923	Delete element
+1535612859296	Rename local variable 'hm'
+1535612888091	Delete element
+1535612918628	Rename local variable 'temp'
+1535612938188	Rename local variable 'temp'
+1535616717182	Rename local variable 'count'
+1535616730687	Rename local variable 'count'
+1535616772105	Extract method 'countSpace'
+1535635432953	Delete element
+1535635442743	Delete element

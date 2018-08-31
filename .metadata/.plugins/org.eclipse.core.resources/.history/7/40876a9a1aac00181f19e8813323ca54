@@ -1,0 +1,94 @@
+package com.techlabs.employeedataanalyzer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class EmployeeSorter {
+
+	public ArrayList<Employee> sortEmployee(ArrayList<Employee> employeeList) {
+
+		HashMap<String, Employee> hm = new HashMap<String, Employee>();
+		ArrayList<Employee> rootEmployee = new ArrayList<Employee>();
+
+		for (Employee employee : employeeList) {
+			String temp = employee.getDesignation();
+			if (temp.equals("'PRESIDENT'")) {
+				hm.put(employee.getId(), employee);
+				rootEmployee.add(employee);
+			}
+			if (temp.equals("'MANAGER'")) {
+				hm.put(employee.getId(), employee);
+			}
+			if (temp.equals("'CLERK'")) {
+				hm.put(employee.getId(), employee);
+			}
+			if (temp.equals("'ANALYST'")) {
+				hm.put(employee.getId(), employee);
+			}
+			if (temp.equals("'SALESMAN'")) {
+				hm.put(employee.getId(), employee);
+			}
+		}
+
+		for (Employee employee : employeeList) {
+			if (hm.containsKey(employee.getManagerID())) {
+
+				Employee object = hm.get(employee.getManagerID());
+				object.addChildEmployee(employee);
+			}
+		}
+
+		return rootEmployee;
+	}
+}
+
+/*
+ * ArrayList<Employee> parentEmployee = new ArrayList<Employee>();
+ * 
+ * for (Employee currentEmployee : employeeList) { for (Employee employee :
+ * employeeList) { if (currentEmployee.getManagerID().equals("NULL")) {
+ * parentEmployee.add(currentEmployee); break; } int id =
+ * Integer.parseInt(currentEmployee.getManagerID()); if (id == employee.getId())
+ * { employee.addChildEmployee(currentEmployee); break; } } } return
+ * parentEmployee; }
+ */
+
+/*
+ * HashMap<Integer, Employee> map = new HashMap<Integer, Employee>();
+ * 
+ * ArrayList<Employee> manager = new ArrayList<Employee>(); ArrayList<Employee>
+ * salesman = new ArrayList<Employee>(); ArrayList<Employee> clerk = new
+ * ArrayList<Employee>(); ArrayList<Employee> analyst = new
+ * ArrayList<Employee>(); ArrayList<Employee> president = new
+ * ArrayList<Employee>();
+ * 
+ * for (Employee currentEmployee : employeeList) {
+ * if(currentEmployee.getDesignation()=="PRESIDENT") {
+ * president.add(currentEmployee); }else
+ * if(currentEmployee.getDesignation()=="MANAGER"){
+ * manager.add(currentEmployee); }else
+ * if(currentEmployee.getDesignation()=="SALESMAN"){
+ * salesman.add(currentEmployee); }else
+ * if(currentEmployee.getDesignation()=="clerk"){ clerk.add(currentEmployee);
+ * }else{ analyst.add(currentEmployee); } }
+ */
+
+/*
+ * HashMap<String, Employee> hm = new HashMap<String, Employee>();
+ * 
+ * ArrayList<Pair> pairs = new ArrayList<Pair>();
+ * 
+ * for (Employee employee : employeeList) { pairs.add(new
+ * Pair(employee.getManagerID(), employee.getId(), employee)); }
+ * 
+ * for (Pair pair : pairs) { Employee child = null; if
+ * (hm.containsKey(pair.getParentId())) { child = hm.get(pair.getParentId()); }
+ * else { hm.put(pair.getParentId(), child); }
+ * 
+ * child = pair.getEmployee();
+ * 
+ * Employee parent = null; if (hm.containsKey(pair.getParentId())) { parent =
+ * hm.get(pair.getParentId()); } else { hm.put(pair.getParentId(), ); }
+ * 
+ * }
+ */

@@ -1,6 +1,0 @@
-package com.techlabs.lsp.violation.test;
-
-public class ShapeTest {
-	public static void main()
-
-}

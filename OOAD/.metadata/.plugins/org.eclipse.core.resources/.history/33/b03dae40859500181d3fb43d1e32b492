@@ -1,8 +1,0 @@
-package com.techlabs.dipviolation;
-
-public class Xml {
-	public void display(){
-   	 System.out.println("It is in XML");
-    }
-
-}

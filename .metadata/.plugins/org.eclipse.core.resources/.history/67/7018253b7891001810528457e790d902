@@ -1,9 +1,0 @@
-package com.techlabs.shoppingcart.test;
-
-public class OrderHistory {
-	public static void main(String args[])
-	{
-		Customer customer = new Customer("Shubham","Bhayandar", 2345);
-	}
-
-}

@@ -1,0 +1,16 @@
+package com.techlabs.employeedataanalyzer;
+
+import java.util.ArrayList;
+
+public class PersonGroup implements IPerson {
+
+	private ArrayList<Employee> employeeList = new ArrayList<Employee>();
+	@Override
+	public void generateHierarchyStructure() {
+	
+	}
+	
+	public void  addEmployeeInList(Employee employee){
+		employeeList.add(employee);
+	}
+}

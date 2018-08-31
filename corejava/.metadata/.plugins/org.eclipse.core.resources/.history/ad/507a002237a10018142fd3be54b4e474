@@ -1,0 +1,23 @@
+package com.techlabs.chaptersix.game;
+
+import java.util.ArrayList;
+
+public class DotCom {
+	private ArrayList<String> locationCells;
+
+	public void setLocationCells(ArrayList<String> locs) {
+		locationCells = locs;
+	}
+
+	public String checkYourself(String userInput) {
+		int guess = Integer.parseInt(userInput);
+		String result = "miss";
+		int index=locationCells.indexOf(userInput)
+		if (numOfHits == locationCells.length) {
+			result = "kill";
+		}
+		System.out.println(result);
+		return result;
+	}
+
+}

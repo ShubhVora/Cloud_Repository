@@ -7,7 +7,7 @@ public class Array_List {
 	{
 		ArrayList<Integer> al=new ArrayList<Integer>();
 		
-		al.add(new Integer(4));
+		al.add(4);
 		al.add(new Integer(57));
 		al.add(new Integer(39));
 		

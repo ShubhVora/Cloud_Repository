@@ -1,0 +1,73 @@
+package com.techlabs.employeedataanalyzer;
+
+import java.util.ArrayList;
+
+public class Employee {
+	private int id, deptNo;
+	private String designation, managerID, name, DOJ, Null;
+	private float salary;
+	private ArrayList<Employee> childEmployeeList;
+
+	Employee(int id, String name, String designation, String managerID, String DOJ, float salary, String Null,
+			int deptNo) {
+		this.id = id;
+		this.managerID = managerID;
+		this.deptNo = deptNo;
+		this.designation = designation;
+		this.name = name;
+		this.DOJ = DOJ;
+		this.Null = Null;
+		this.salary = salary;
+		this.childEmployeeList = new ArrayList<Employee>();
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public String getManagerID() {
+		return this.managerID;
+	}
+
+	public int getDeptNo() {
+		return this.deptNo;
+	}
+
+	public String getDesignation() {
+		return this.designation;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getDOJ() {
+		return this.DOJ;
+	}
+
+	public float getSalary() {
+		return this.salary;
+	}
+
+	public ArrayList<Employee> getChildEmployeeList() {
+		return childEmployeeList;
+	}
+
+	public void setList(ArrayList<Employee> employeeList) {
+		this.childEmployeeList = employeeList;
+	}
+
+	public void addChildEmployee(Employee employee) {
+		if (employee.isEmploymentPresent(childEmployeeList))
+			childEmployeeList.add(employee);
+	}
+	
+	public boolean isEmploymentPresent(ArrayList<Employee> employeeList){
+		for(Employee employee: employeeList){
+			if(this.equals(employee.getId()))
+				return true;
+		}
+		return false;
+	}
+
+}

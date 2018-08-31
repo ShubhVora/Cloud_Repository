@@ -14,7 +14,6 @@ public class Customer {
 
 	public void addToCart(LineItem lineItem, ArrayList<LineItem> cartProduct) {
 		cartProduct.add(lineItem);
-
 	}
 
 	public void deleteProductFromCart(Product product, ArrayList<LineItem> cartProduct) {

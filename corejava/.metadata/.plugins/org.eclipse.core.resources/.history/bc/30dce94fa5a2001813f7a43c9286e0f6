@@ -1,0 +1,8 @@
+package com.techlabs.chaptereight;
+
+public class Clowns extends Picasso{
+
+	public int iMethod(){
+		return 5;
+	}
+}

@@ -1,8 +1,8 @@
 package com.techlabs.lsp.violation;
 
 public class Rectangle {
-	
-	protected int width,height;
+
+	protected int width, height;
 
 	public Rectangle(int width, int height) {
 		super();
@@ -25,10 +25,9 @@ public class Rectangle {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
-	public int calculateArea()
-	{
-		return (this.height*this.width);
+
+	public int calculateArea() {
+		return (this.height * this.width);
 	}
 
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.techlabs.operationstrategy.DoAddition"/>
+<fullyQualifiedTypeName name="com.techlabs.operationstrategy.Context"/>
+<fullyQualifiedTypeName name="com.techlabs.operationstrategy.DoSubtraction"/>
+<fullyQualifiedTypeName name="com.techlabs.operationstrategy.DoMultiplication"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.techlabs.observerpattern.IListner"/>
+<fullyQualifiedTypeName name="com.techlabs.observerpattern.EmailListner"/>
+<fullyQualifiedTypeName name="com.techlabs.observerpattern.SMSListner"/>
+<fullyQualifiedTypeName name="com.techlabs.observerpattern.Account"/>
+<fullyQualifiedTypeName name="com.techlabs.compositepattern.IHTMLTag"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="com.techlabs.facadepattern.ShopKeeper"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.IFood"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.VegFood"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.FoodDecorator"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.NonVegFood"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.ChineseFood"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.IShape"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.Circle"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.Rectangle"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.RedShapeDecorator"/>
+<fullyQualifiedTypeName name="com.techlabs.decoratorpattern.ShapeDecorator"/>
+<fullyQualifiedTypeName name="com.techlabs.threadsafesingleton.Student"/>
+<fullyQualifiedTypeName name="com.techlabs.audi.AudiHatchBlack"/>
+<fullyQualifiedTypeName name="com.techlabs.audi.AudiSudan"/>
+<fullyQualifiedTypeName name="com.techlabs.audi.AudiSUV"/>
+<fullyQualifiedTypeName name="com.techlabs.bmw.BMWHatchBlack"/>
+<fullyQualifiedTypeName name="com.techlabs.bmw.BMWSudan"/>
+<fullyQualifiedTypeName name="com.techlabs.bmw.BMWSUV"/>
+<fullyQualifiedTypeName name="com.techlabs.toyota.ToyotaHatchBlack"/>
+<fullyQualifiedTypeName name="com.techlabs.toyota.ToyotaSudan"/>
+<fullyQualifiedTypeName name="com.techlabs.toyota.ToyotaSUV"/>
+<fullyQualifiedTypeName name="com.techlabs.automobileinterface.IAutoMobile"/>
+<fullyQualifiedTypeName name="com.techlabs.automobileinterface.IAutoMobileFactory"/>
+<fullyQualifiedTypeName name="com.techlabs.factory.BMWFactory"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,9 @@
+package com.techlabs.employeedataanalyzer;
+
+import java.util.HashSet;
+
+public interface ILoader {
+
+	public HashSet<String> load();
+
+}

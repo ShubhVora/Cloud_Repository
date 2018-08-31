@@ -6,9 +6,10 @@ import java.util.Scanner;
 public class Test {
 
 	final static int DISPLAY = 1, SEARCH = 2, EXIT = 3;
+
 	public static void main(String args[]) {
 		int choice;
-		
+
 		String[] code = { "MH", "JK", "GJ", "RJ", "MP", "UP", "PJ" };
 		String[] state = { "Maharastra", "Jammu Kashmir", "Gujarat", "Rajasthan", "Madhya Pradesh", "Uttar Pradesh",
 				"Punjab" };
@@ -39,10 +40,9 @@ public class Test {
 			case SEARCH:
 				System.out.println("Enter the Character to be search:\t");
 				char c = sc.next().charAt(0);
-				ArrayList<RTO> searchedList=search.search(list, c);
-				for(RTO temp:searchedList)
-				{
-					System.out.println(temp.getCode()+"\t"+temp.getState());
+				ArrayList<RTO> searchedList = search.search(list, c);
+				for (RTO temp : searchedList) {
+					System.out.println(temp.getCode() + "\t" + temp.getState());
 				}
 				break;
 			case EXIT:

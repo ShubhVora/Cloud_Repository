@@ -1,0 +1,29 @@
+package com.techlabs.employeedataanalyzer;
+
+public class Pair {
+
+	String parentId, childID;
+
+	public Pair(String parentId, String childID) {
+		super();
+		this.parentId = parentId;
+		this.childID = childID;
+	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getChildID() {
+		return childID;
+	}
+
+	public void setChildID(String childID) {
+		this.childID = childID;
+	}
+
+}

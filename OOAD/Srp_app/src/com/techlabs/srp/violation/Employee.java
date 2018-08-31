@@ -4,14 +4,13 @@ public class Employee {
 	private String name;
 	private int id;
 	private String department;
-	
-	public Employee(String name,int id, String department)
-	{
-		this.name=name;
-		this.department=department;
-		this.id=id;
+
+	public Employee(String name, int id, String department) {
+		this.name = name;
+		this.department = department;
+		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -36,12 +35,11 @@ public class Employee {
 		this.department = department;
 	}
 
-	public void isPromotional()
-	{
+	public void isPromotional() {
 		System.out.println("This is promotional method");
 	}
-	public void calculateTax()
-	{
+
+	public void calculateTax() {
 		System.out.println("This is Calculate Tax method");
 	}
 

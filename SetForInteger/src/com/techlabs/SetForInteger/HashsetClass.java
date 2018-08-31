@@ -18,15 +18,14 @@ public class HashsetClass {
 		return set.contains(number);
 	}
 
-	public boolean updateInteger(int number1,int number2)
-	{
-		if(searchInteger(number1)){
-		   set.remove(number1);
-		   set.add(number2);
+	public boolean updateInteger(int number1, int number2) {
+		if (searchInteger(number1)) {
+			set.remove(number1);
+			set.add(number2);
 			return true;
 		}
-			return false;
-		
+		return false;
+
 	}
 
 	public HashSet<Integer> getHashSetList() {

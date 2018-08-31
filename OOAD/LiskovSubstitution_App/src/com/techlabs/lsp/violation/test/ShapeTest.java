@@ -19,7 +19,7 @@ public class ShapeTest {
 		int beforeWidth = rectangle.getWidth();
 		rectangle.setHeight(rectangle.getHeight()+10);
 		int afterWidth = rectangle.getWidth();
-		System.out.println("Before:"+beforeWidth+"\nAfter:"+afterWidth);
+		System.out.println("Before Width:"+beforeWidth+"\nAfter Width:"+afterWidth);
 	}
 	
 }

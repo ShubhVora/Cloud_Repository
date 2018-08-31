@@ -1,0 +1,35 @@
+package com.techlabs.frame;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+public class WelcomeFrame extends JFrame {
+
+	public WelcomeFrame() {
+
+		setTitle("Shubham");
+		setSize(1024, 768);
+		setLocationRelativeTo(null);
+		getContentPane().setBackground(Color.blue);
+
+		JButton b = new JButton();
+		b.setBounds(50, 50, 20, 20);
+		final JTextField tf = new JTextField();
+		tf.setBounds(50, 50, 150, 20);
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tf.setText("Welcome to Javatpoint.");
+			}
+		});
+		add(b);
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+}

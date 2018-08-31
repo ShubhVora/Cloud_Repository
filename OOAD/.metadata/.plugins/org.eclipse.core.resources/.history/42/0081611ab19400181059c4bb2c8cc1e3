@@ -1,5 +1,0 @@
-package com.techlabs.lsp.refactor;
-
-public interface IPolygon {
-
-}

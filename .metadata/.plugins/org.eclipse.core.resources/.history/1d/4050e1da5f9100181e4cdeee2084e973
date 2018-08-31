@@ -1,8 +1,0 @@
-package com.techlabs.bankapp.test;
-
-public class BankTest {
-	public static void main(String args[]){
-		
-	}
-
-}

@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class Search {
 
 	public ArrayList<RTO> search(ArrayList<RTO> list, char c) {
-		
+
 		ArrayList<RTO> searchedList = new ArrayList<RTO>();
 		for (RTO temp : list) {
-			for (int i = 0; i < temp.getState().length(); i++) {
-				if (temp.getState().charAt(i) == c) {
-					searchedList.add(list.get(i));
+			String str = temp.getState().toLowerCase();
+			for (int i = 0; i < str.length(); i++) {
+				if (str.charAt(i) == c) {
+					searchedList.add(temp);
+					break;
 				}
 			}
 		}

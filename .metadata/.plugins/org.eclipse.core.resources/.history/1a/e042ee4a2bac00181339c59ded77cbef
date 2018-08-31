@@ -1,0 +1,45 @@
+package com.techlabs.employedataanalyzer.test;
+
+import java.util.ArrayList;
+
+import com.techlabs.employeedataanalyzer.DiskLoader;
+import com.techlabs.employeedataanalyzer.Employee;
+import com.techlabs.employeedataanalyzer.EmployeeSorter;
+import com.techlabs.employeedataanalyzer.Parser;
+
+public class Test {
+
+	public static void main(String args[]) {
+		ArrayList<Employee> listDisk = new ArrayList<Employee>();
+
+		DiskLoader diskloader = new DiskLoader();
+
+		Parser parser1 = new Parser(diskloader);
+
+		listDisk = parser1.getRecords(parser1.getParserList());
+
+		EmployeeSorter sortObject = new EmployeeSorter();
+
+		ArrayList<Employee> parentList = new ArrayList<Employee>();
+
+		parentList = sortObject.sortEmployee(listDisk);
+		System.out.println("\n\nId " + "Name " + "Designation " + "ManagerId " + "DOJ " + "Salary " + "DeptNumber \n");
+		String s = "";
+		Employee parent =null;
+		display(parentList, s);
+
+	}
+
+	public static void display(ArrayList<Employee> parentList, String s) {
+
+		for (Employee employee : parentList) {
+			System.out.println(s + employee.getId() + employee.getName() + employee.getDesignation()
+					+ employee.getManagerID() + employee.getDOJ() + employee.getSalary() + employee.getDeptNo());
+			if (!employee.getChildEmployeeList().isEmpty())
+				s = s + "\t";
+			display(employee.getChildEmployeeList(), s);
+			
+			
+		}
+	}
+}

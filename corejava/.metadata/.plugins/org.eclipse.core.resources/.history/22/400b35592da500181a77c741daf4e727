@@ -1,0 +1,26 @@
+package com.techlabs.chaptereleven.mountains;
+
+import java.util.LinkedList;
+
+public class SortMountains {
+	LinkedList<Mountain> mtn = new LinkedList<Mountain>();
+	
+	class NameCompare implements Comparator<Mountain>{
+		public int compare(Mountain one, Mountain two){
+			return (two.height-one.height);
+		}
+	}
+	
+	public static void main(String args[]){
+		new SortMountains().go();
+	}
+	
+	public void go()
+	{
+		mtn.add(new Mountain("Longs",14255));
+		mtn.add(new Mountain("Elbert",14433));
+		mtn.add(new Mountain("Maroon",14156));
+		mtn.add(new Mountain("Castle",14265));
+	}
+
+}

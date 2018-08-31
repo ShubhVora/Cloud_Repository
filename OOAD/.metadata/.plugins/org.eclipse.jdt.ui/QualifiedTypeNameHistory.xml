@@ -6,7 +6,6 @@
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="javax.jws.soap.SOAPBinding.Style"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="com.techlabs.chapterfive.parttwo.Wood"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
@@ -21,7 +20,6 @@
 <fullyQualifiedTypeName name="com.techlabs.isp.violation.IWorker"/>
 <fullyQualifiedTypeName name="com.techlabs.isp.violation.Robot"/>
 <fullyQualifiedTypeName name="com.techlabs.isp.violation.Manager"/>
-<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 <fullyQualifiedTypeName name="com.techlabs.isp.refactor.Manager"/>
 <fullyQualifiedTypeName name="com.techlabs.isp.refactor.Robot"/>
 <fullyQualifiedTypeName name="com.techlabs.isp.refactor.IWorker"/>
@@ -35,4 +33,30 @@
 <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
 <fullyQualifiedTypeName name="com.techlabs.refactor.TaxCalculator"/>
 <fullyQualifiedTypeName name="com.techlabs.refactor.Xml"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.Board"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.Player"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.NineBoard"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.ResultAnalyser"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.IBoard"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.test.GameConsole"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.Game"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.GameStatus"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.Cell"/>
+<fullyQualifiedTypeName name="com.techlabs.tictactoe.Mark"/>
+<fullyQualifiedTypeName name="org.junit.Assert"/>
+<fullyQualifiedTypeName name="org.junit.rules.ExpectedException"/>
+<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+<fullyQualifiedTypeName name="junit.framework.Assert"/>
+<fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
+<fullyQualifiedTypeName name="com.techlabs.frame.WelcomeFrame"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
 </qualifiedTypeNameHistroy>

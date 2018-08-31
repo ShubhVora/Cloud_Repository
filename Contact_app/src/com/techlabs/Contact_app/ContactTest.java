@@ -6,26 +6,27 @@ import java.util.Scanner;
 public class ContactTest {
 
 	public static void main(String args[]) throws Exception {
-		
-		 final  int display=1, add=2,export=3,exit=4;  
+
+		final int DISPLAY = 1, ADD = 2, EXPORT = 3, EXIT = 4;
 		ArrayList<Contact> ContactList = new ArrayList<Contact>();
 		ContactShare shareContact = new ContactShare();
-		
-		//ContactList.add(new Contact("Shubham", "Vora", "shubhamvora@gmail.com"));
-		//shareContact.serialize(ContactList);
+
+		// ContactList.add(new Contact("Shubham", "Vora",
+		// "shubhamvora@gmail.com"));
+		// shareContact.serialize(ContactList);
 		int choice;
-		
+
 		ContactList = shareContact.deserialize();
 		Scanner sc = new Scanner(System.in);
 		do {
-			System.out.println("MENU:   ("+ ContactList.size()+")\n1. Display\n2. Add\n3. Export\n4. Exit:");
+			System.out.println("MENU:   (" + ContactList.size() + ")\n1. Display\n2. Add\n3. Export\n4. Exit:");
 			choice = sc.nextInt();
 
 			switch (choice) {
-			case display:
+			case DISPLAY:
 				display(ContactList);
 				break;
-			case add:
+			case ADD:
 				System.out.println("Enter the details of Contact:");
 				System.out.println("Enter First Nme:");
 				String fname = sc.next();
@@ -34,19 +35,18 @@ public class ContactTest {
 				System.out.println("Enter email:");
 				String email = sc.next();
 				Contact contact = new Contact(fname, lname, email);
-                ContactList.add(contact);
+				ContactList.add(contact);
 				break;
-			case export:
-				  shareContact.export(ContactList);
+			case EXPORT:
+				shareContact.export(ContactList);
 				break;
-			case exit: 
-				 shareContact.serialize(ContactList);
-				 break;
+			case EXIT:
+				shareContact.serialize(ContactList);
+				break;
 			}
 
 		} while (choice != 4);
-		
-		
+
 		sc.close();
 
 	}

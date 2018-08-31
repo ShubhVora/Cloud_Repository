@@ -1,5 +1,0 @@
-package com.techlabs.isp.refactor;
-
-public interface IWorker {
-
-}

@@ -1,0 +1,60 @@
+package com.techlabs.employeedataanalyzer;
+
+import java.util.ArrayList;
+
+public class Employee {
+	private int id, deptNo;
+	private String designation, managerID, name, DOJ, Null;
+	private float salary;
+	private ArrayList<Employee> employeeList;
+
+	Employee(int id, String name, String designation, String managerID, String DOJ, float salary, String Null,
+			int deptNo) {
+		this.id = id;
+		this.managerID = managerID;
+		this.deptNo = deptNo;
+		this.designation = designation;
+		this.name = name;
+		this.DOJ = DOJ;
+		this.Null = Null;
+		this.salary = salary;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public String getManagerID() {
+		return this.managerID;
+	}
+
+	public int getDeptNo() {
+		return this.deptNo;
+	}
+
+	public String getDesignation() {
+		return this.designation;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getDOJ() {
+		return this.DOJ;
+	}
+
+	public float getSalary() {
+		return this.salary;
+	}
+
+	public ArrayList<Employee> getList() {
+		return employeeList;
+	}
+	
+	public ArrayList<Employee> getList() {
+		return employeeList;
+	}
+
+
+}

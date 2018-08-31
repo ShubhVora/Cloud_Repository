@@ -1,11 +1,10 @@
 package com.techlabs.lsp.refactor;
 
-public class Square {
+public class Square implements IPolygon{
 
 	private int side;
 
 	public Square(int side) {
-		super();
 		this.side = side;
 	}
 
@@ -16,9 +15,8 @@ public class Square {
 	public void setSide(int side) {
 		this.side = side;
 	}
-	
-	public int calculateArea()
-	{
-		return (this.side*this.side);
+
+	public int calculateArea() {
+		return (this.side * this.side);
 	}
 }

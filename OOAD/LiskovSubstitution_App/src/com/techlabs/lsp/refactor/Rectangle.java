@@ -1,8 +1,8 @@
 package com.techlabs.lsp.refactor;
 
 public class Rectangle implements IPolygon {
-	
-	private int width,height;
+
+	private int width, height;
 
 	public Rectangle(int width, int height) {
 		super();
@@ -25,10 +25,9 @@ public class Rectangle implements IPolygon {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
-	public int calculateArea()
-	{
-		return (this.height*this.width);
+
+	public int calculateArea() {
+		return (this.height * this.width);
 	}
 
 }

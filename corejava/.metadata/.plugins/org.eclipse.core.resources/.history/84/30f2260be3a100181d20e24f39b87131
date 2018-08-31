@@ -1,0 +1,12 @@
+package com.techlabs.chaptersix.game;
+
+public class SimpleDotComTestDrive {
+	public static void main(String arg[]){
+		DotCom dot = new DotCom();
+		int []locations = {2,3,4};
+		dot.setLocationCells(locations);
+		String userGess ="2";
+		String result = dot.checkYourself(userGess);
+	}
+
+}

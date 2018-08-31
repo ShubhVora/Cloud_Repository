@@ -1,9 +1,0 @@
-package com.techlabs.dipviolation;
-
-public class Txt {
-	
-	public void display(){
-   	 System.out.println("It is in TXT");
-    }
-
-}

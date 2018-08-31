@@ -1,0 +1,31 @@
+package com.techlabs.frame;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+public class WelcomeFrame extends JFrame {
+
+	public WelcomeFrame() {
+
+		setTitle("Shubham");
+
+		setSize(1024, 768);
+		setLocationRelativeTo(null);
+		getContentPane().setBackground(Color.blue);
+		
+		JButton b = new JButton("Click here");
+		b.setBounds(900, 900, 95, 30);
+		
+		add(b);
+		
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+}
