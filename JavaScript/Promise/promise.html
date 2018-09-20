@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Promise</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var promise =new Promise(function(resolve,reject){
+            
+            var randomNumber=(Math.random()*11);
+            console.log(randomNumber);
+            if(randomNumber<5)           
+                resolve("resolve is called");
+            else
+                reject("Reject is called");
+            
+        });
+
+        promise.then(function(message){
+            console.log(message);
+        },function (message){
+            console.log(message);
+        });
+    </script>
+</html>

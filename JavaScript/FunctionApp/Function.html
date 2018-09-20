@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Function</title>
+</head>
+<body>
+<p id ="FunctionState"></p>
+<p id ="FunctionExpress"></p>
+
+<script>
+
+    (function statementExpression(){
+    function printWord(){
+        document.getElementById("FunctionState").innerHTML="This is function statement";
+        }
+    printWord();
+
+    var b= function(){
+        return "This is function Expression";
+    }
+
+    document.getElementById("FunctionExpress").innerHTML=b();
+
+})();
+</script>
+</body>
+</html>

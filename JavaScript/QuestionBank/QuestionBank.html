@@ -1,0 +1,199 @@
+<html>
+    <head>
+        <title>Question Bank</title>
+    </head>
+    <body >
+        <p id="displayQuizQuestion"></p>
+    </body>
+    <script>
+        (function questionApp(){
+
+            var number=-1,answer=[];
+            var quiz=[
+                {question:"What is the capital of India?",
+                    options:["new delhi","shimla","calcutta","J&K"],answer:"new delhi"},
+                {question:"What is the capital of Maharashtra?",
+                    options:["mumbai","bombay","nagpur","Chennai"],answer:"mumbai"}, 
+                {question:"4*5 is equal to x. What is the value of x?",
+                    options:["02","20","10"],answer:"20"},
+                {question:"Which of the following is an Integer?",
+                    options:["A","5.0","5"],answer:"5"},
+                {question:"What is the colour of blood?",
+                    options:["black","white","red"],answer:"red"},
+                    {question:"9*9 is equal to x. What is the value of x?",
+                    options:["71","81","91"],answer:81}];
+            var rootElement = document.getElementById("displayQuizQuestion");
+            
+            startPage();
+
+            function startPage(){
+                var startButton=document.createElement("button");
+                startButton.innerHTML="startQuiz";
+                startButton.addEventListener("click",start);
+        
+                rootElement.appendChild(startButton);
+            }
+            
+            function loadQuestion(randomNumber){
+                rootElement.innerHTML="";
+
+                var questionElement = createQuestionElement(randomNumber);
+                var radioButtonElement=createRadioButtonElement(randomNumber);
+                var submitButtonElement=createSubmitButtonElement();
+                var childElement = appenCreatedChild(questionElement,radioButtonElement,
+                submitButtonElement,randomNumber);
+                
+                rootElement.appendChild(childElement);
+            }
+
+            function createQuestionElement(randomNumber){
+                var questionElement=document.createElement("p");
+                var questionNumber = number+1; 
+                questionElement.innerHTML=
+                "<p><b>Question:</b> "+questionNumber+"/"+quiz.length+"</p>"
+                +quiz[randomNumber].question;
+
+                return questionElement;
+            }
+
+            function createRadioButtonElement(randomNumber){
+                var radioButton=[];
+                
+                for(var count=0;count<quiz[randomNumber].options.length;count++){
+                    var labelElement = document.createElement("label");
+                    var radioButtonElement = document.createElement("input");  
+                    radioButtonElement.setAttribute("type","radio");
+                    radioButtonElement.id=number;
+                    radioButtonElement.addEventListener("click",checkResult);
+                    radioButtonElement.setAttribute("name",quiz[randomNumber].answer);
+                    radioButtonElement.setAttribute("value",quiz[randomNumber].options[count]);
+                    labelElement.appendChild(radioButtonElement);
+                    labelElement.appendChild(document.createTextNode(quiz[randomNumber].options[count]));
+                    radioButton.push(labelElement);
+                }
+                return radioButton;
+            }
+
+            function createSubmitButtonElement(){
+                var paraElement =document.createElement("p");
+                paraElement.style.textAlign="center";
+
+                var submitButtonElement= document.createElement("button");
+                submitButtonElement.setAttribute("id", number);
+                submitButtonElement.innerHTML="Next Question";
+                if((number+1)==quiz.length)
+                {
+                    submitButtonElement.innerHTML="Submit";
+                }
+                submitButtonElement.addEventListener("click",start);
+                paraElement.appendChild(submitButtonElement);
+
+                return paraElement;
+            }
+            
+            function appenCreatedChild(questionElement,radioButtonElement,
+            submitButtonElement,randomNumber){
+                var childElement=document.createElement("p");
+                childElement.appendChild(questionElement);
+                for(var optionCount=0;optionCount<quiz[randomNumber].options.length;optionCount++)
+                {
+                    childElement.appendChild(radioButtonElement[optionCount]);
+                }    
+                    
+                childElement.appendChild(submitButtonElement);
+                return childElement;
+            }
+            
+            function start(){
+                if(answer[number]==undefined)
+                {
+                    answer[number]=false;
+                }
+                
+                var randomNumber=Math.floor(Math.random()*quiz.length);
+                console.log(quiz.length);
+                console.log(randomNumber);
+
+                number++;
+                if(number<quiz.length){
+                    loadQuestion(randomNumber);
+                }
+                
+                if(number==quiz.length && answer.length==quiz.length){
+                    alert("Press OK to check the result.");
+                    showPieChart();
+                }
+            }
+
+            function showPieChart(){
+                var rightAnswer=0;
+                for(var count=0;count<answer.length;count++){
+                    if(answer[count]==true)
+                    {
+                        rightAnswer++;
+                        console.log(rightAnswer);
+                    }    
+                }
+            
+                rightAnswer=(rightAnswer/answer.length);
+                drawPieChart(rightAnswer);
+            }
+
+            function drawPieChart(rightAnswer){
+                rootElement.innerHTML="";
+
+                rootElement.innerHTML='<canvas id="Circle" height="400" width="400" style="border:2px solid black;" >';
+                    
+                var canvasElement = document.getElementById("Circle");
+                var context = canvasElement.getContext("2d");  
+
+                context.beginPath();
+				context.fillStyle="green";
+				context.moveTo(140,220);				
+                context.arc(140,220,130,0,2*Math.PI*rightAnswer);    
+				context.fill();
+                context.closePath();
+                
+
+                context.fillStyle="Red";     
+                context.beginPath();  
+                context.moveTo(140,220);
+                context.arc(140,220,130,2*Math.PI*rightAnswer,2*Math.PI);    
+				context.fill();
+                context.closePath();
+                    
+                context.fillStyle="green";
+                context.fillRect(300,20,10,10);
+                context.fillStyle="Red";
+                context.fillRect(300,55,10,10);
+                
+                context.fillStyle="black";
+                context.fillText("Correct Answer",318,30);
+                context.fillText("Wrong Answer",318,65);
+
+
+                printResultDetails();
+            }
+
+            function checkResult(){
+                if(this.value==this.name){
+                    answer[number]=true;
+                }
+                if(this.value!=this.name){
+                  answer[number]=false;
+                }
+            }
+
+            function printResultDetails(){
+                for(var count=0;count<answer.length;count++)
+                {
+                    var questionNumber=count+1;
+                    var result=document.createElement("p");
+                    result.innerHTML="Question "+questionNumber+":"+answer[count];
+                    rootElement.appendChild(result);
+                }
+            }
+    }
+    )();
+    </script>
+</html>

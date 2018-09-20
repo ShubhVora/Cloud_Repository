@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Prime Module Geneartor</title>
+    </head>
+
+    <body>
+        <span>Enter a number:</span>
+        <input id="Number" type="text" width="50px">
+        <button id="Button" onclick="getPrime()">Submit</button>
+        <p id="Display"></p>
+    </body>
+    
+    <script>
+        
+
+        var swabhav= function(){
+            var obj={};
+            
+            obj.primeNumber=function(number,fnSuccess, fnFailure){
+                var array=[];
+                setTimeout( function(){
+                if(parseInt(number)){
+                    number=parseInt(number);
+                    primeNumberGenerator(number,array);
+                    fnSuccess(array);
+                }else{
+                    fnFailure("Not a valid Number");
+                }  
+                },5000);
+        
+            };
+            
+            function primeNumberGenerator(number,array){
+                for(var checkNumber=2;checkNumber<number;checkNumber++){
+                    var count=0; 
+                    count=isPrime(checkNumber,count);
+                    if(count==0){
+                        console.log(checkNumber);
+                        array.push(checkNumber);
+                    }
+                }
+            }
+
+            function isPrime(checkNumber,count){3
+                for(var divisor=2;divisor<checkNumber;divisor++){
+                    if(checkNumber%divisor==0){
+                        count++;
+                        break;
+                    }
+                }
+                return count;
+            }
+        return obj;
+        }();
+
+        function getPrime(){
+            var number=document.getElementById("Number").value;
+            var paragraph=document.getElementById("Display");
+            paragraph.innerHTML="";
+
+            swabhav.primeNumber(number,function(array){
+                for(var checkNumber=0;checkNumber<array.length;checkNumber++){
+                    paragraph.innerHTML+=array[checkNumber];
+                }
+            },function(error){
+                paragraph.innerHTML=error;
+            });
+            
+            console.log("End of prime");
+        }
+
+    </script>
+</html>

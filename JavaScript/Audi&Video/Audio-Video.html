@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Audio-Video</title>    
+    </head>
+    <body>
+        <div>
+            <button id="playSong" >Play Song</button>
+            <button id="pauseSong">Pause Song</button>
+            <audio id="Song">  
+                <source src="audio.mp3" type="audio/mpeg">  
+            </audio>
+        </div>
+        <div>
+            <button id="playVideo" >Play Video</button>
+            <button id ="pauseVideo" >Pause Video</button>
+            <video id="Video" style="height:500px; width:500px;float:left;" >  
+            <source src="video.mp4" type="video/mp4" style="width:100px; height:100px;">  
+             </video> 
+        </div>   
+    </body>
+    <script>
+
+        (function action(){
+
+            document.getElementById("playSong").addEventListener("click",playSong);
+            document.getElementById("pauseSong").addEventListener("click",pauseSong);
+            document.getElementById("playVideo").addEventListener("click",playVideo);
+            document.getElementById("pauseVideo").addEventListener("click",pauseVideo);
+           
+            function playVideo(){
+                var id=document.getElementById("Video");
+                id.play();
+
+            }
+            function pauseVideo(){
+                var id=document.getElementById("Video");
+                id.pause();
+                    
+            }
+            function playSong(){
+                var id=document.getElementById("Song");
+                id.play();
+            }
+            function pauseSong(){
+                var id=document.getElementById("Song");
+                id.pause();
+            }
+    
+        }
+        )();
+    </script>   
+</html>

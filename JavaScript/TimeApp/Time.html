@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Time App</title>
+    </head>
+    <body>
+        <p>SetTimeOut Example :-</p>
+        <p id="display"></p>
+        <button id="button" >Click me</button>
+    </body>
+    <script>
+        (function(){
+
+        document.getElementById("button").addEventListener("click",setTimeout(print,5000));
+        function print(){
+            document.getElementById("display").innerHTML="\tText is shown after 5 seconds...";
+        }
+
+        })();
+    </script>
+</html>

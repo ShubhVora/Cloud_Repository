@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Global Namespace Pollution</title>
+    </head>
+    <body>
+        <p id="NamespacePolluted"></p>
+        <p id="NamespaceNotPolluted"></p>
+    </body>
+    <script>
+        (function globalWithPollution(){
+            var x=20;
+            var y=10;
+            var result;
+            function rectangle(){
+                result= x*y;
+                return result;
+            }
+            document.getElementById("NamespacePolluted").innerHTML=rectangle();
+    
+        })();
+    </script>
+
+    <script>
+        (function globalWithoutPollution(){
+            function rectangleArea(x,y){
+                return x*y;
+            }
+            document.getElementById("NamespaceNotPolluted").innerHTML=rectangleArea(2,1);
+        }
+        )();
+    </script>
+</html>

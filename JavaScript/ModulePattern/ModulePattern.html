@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Module Pattern</title>
+
+        <script>
+        
+            function makeCustomer(){
+                var obj={};
+                var firstName;
+                var lastName;
+
+                obj.setFirstName=function(name){
+                    if(name!="" && name!=undefined){
+                        firstName=name;
+                    }
+                    else{
+                        throw "Name is undefined";
+                    }
+                }
+            
+                obj.setLastName=function(name){
+                    if(name!="" && name!=undefined){
+                        lastName=name;
+                    }
+                    else{
+                        throw "Name is undefined";
+                    }
+                }
+            
+                obj.getFullName=function(){
+                    return firstName+" "+ lastName;
+                }
+
+                return obj;
+            
+            }
+        
+            var obj=makeCustomer();
+            obj.setFirstName("Shubham");
+            obj.setLastName("Varun");
+            console.log(obj.getFullName()); 
+        </script>
+                
+        <script>
+            (function(){
+            var swabhav=function(){
+            var obj={};
+            
+            obj.cubeFunction=function(number){
+                return Math.pow(number,3);
+            }
+            return obj;
+                    
+            }();
+                
+            console.log(swabhav.cubeFunction(2)); 
+
+            })();
+        </script>    
+
+</head>
+</html>

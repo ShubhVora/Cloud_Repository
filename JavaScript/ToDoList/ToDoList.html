@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDoList</title>
+        <style>
+            .CheckBoxClass{
+                width: 25px;
+                height:15px;
+                padding: 15px;
+            }
+            .TextFieldNone{
+                height:25px;
+                width:150px;
+                text-decoration:none;
+            }
+            .TextFieldLine{
+                height:25px;
+                width:150px;
+                text-decoration:line-through;
+            }
+            .SpanClass{
+                height:25px;
+                width:60px;
+				margin: 15px;
+                
+            }
+        </style>
+    </head>
+  
+    <body onload="loadData()">
+        <table align="center" style="padding: 15px;">
+            <tr >
+                <th><b style="height:50px;">Task:</b></th>
+                <th style="padding: 15px;"><input id="TaskName" style="width:200px; height:30px" placeholder="Enter your task list"></th>
+                <th style="padding: 15px;"><img src="enter.png" id="AddTask" style="height:30px; width:50px;"></th>
+             </tr>
+        </table>
+        <div id ="result"></div>
+        <p id="Rest"></p>
+        
+    </body>
+
+    <script>
+
+        (function toDoFunction(){
+            document.getElementById("AddTask").addEventListener("click",addTask);
+
+            var taskDetails;
+
+            function loadData(){
+                taskDetails=getDataFromLocalStorage();
+                displayTaskList();
+            }
+            
+            var taskTextBox=document.getElementById("TaskName");
+            taskTextBox.addEventListener("keyup",function(event){
+                event.preventDefault();
+                var code = event.which || event.keycode;
+                console.log(code);
+                    if(code===13){
+                        addTask();
+                    }
+            });
+
+                     
+            function addTask(){
+			    var date =getDateTime();
+                if(taskTextBox.value!=""){
+                    taskDetails.push({
+                        name:taskTextBox.value, 
+                        isChecked:false, 
+                        dateTime:date, 
+                    });
+                    storeDataToLocalStorage();
+                    displayTaskList();
+                }
+                else{
+                    alert("Enter the task details.");
+                }
+            }
+            
+            function getDateTime(){
+                var currentDate = new Date();
+                return currentDate;
+            }
+
+            function displayTaskList(){
+                var rootElement =document.getElementById("result");
+                rootElement.innerHTML="";
+
+                for(var index=taskDetails.length-1; index>=0;index--){
+                
+                    var checkBoxElement =createCheckBoxElement(index);
+                    var taskSpanElement= createTaskSpanElement(index);
+                    var dateSpanElement= createDateSpanElement(index);
+                    var deleteButtonElement =createDeleteButtonElement(index);
+                
+                    var childElement = appendCreatedElement(checkBoxElement,taskSpanElement,
+                    dateSpanElement,deleteButtonElement);
+
+                    rootElement.append(childElement);
+                }
+                taskTextBox.value="";
+            }
+                
+            function appendCreatedElement(checkBoxElement,taskSpanElement,dateSpanElement,
+            deleteButtonElement){
+                var childElement=document.createElement("p");
+                childElement.append(checkBoxElement);
+                childElement.append(taskSpanElement);
+                childElement.append(dateSpanElement);
+                childElement.append(deleteButtonElement);
+                return childElement;
+            }
+
+            function createDeleteButtonElement(index){
+                var deleteButtonElement=document.createElement("button");
+				deleteButtonElement.setAttribute("id", index);
+                deleteButtonElement.innerHTML="delete";
+                deleteButtonElement.setAttribute("class","SpanClass");
+                deleteButtonElement.addEventListener("click",removeTask);
+
+                return deleteButtonElement;
+            }
+
+            function createDateSpanElement(index){
+                var dateSpanElement =document.createElement("span");
+                dateSpanElement.innerHTML=taskDetails[index].dateTime;
+                
+                return dateSpanElement;
+            }
+
+            function createTaskSpanElement(index){
+                var taskSpanElement=document.createElement("span");
+                taskSpanElement.setAttribute("class","TextFieldNone");
+                if(taskDetails[index].isChecked==true){
+                    taskSpanElement.setAttribute("class","TextFieldLine");
+                }
+                taskSpanElement.innerHTML=taskDetails[index].name;
+
+                return taskSpanElement;
+            }
+
+            function createCheckBoxElement(index){
+                var checkBoxElement=document.createElement("input");
+                checkBoxElement.setAttribute("class","CheckBoxClass");
+                checkBoxElement.setAttribute("type", "checkBox");
+                checkBoxElement.setAttribute("id", index);
+                checkBoxElement.addEventListener("change",toggleStrike);
+                checkBoxElement.checked=taskDetails[index].isChecked;
+                
+                return checkBoxElement;
+            }
+			
+            function removeTask(){
+                taskDetails.splice(this.id,1);
+                displayTaskList();
+                storeDataToLocalStorage();
+            }
+
+		    function toggleStrike(){
+                taskDetails[this.id].isChecked=!taskDetails[this.id].isChecked;
+                displayTaskList();
+                storeDataToLocalStorage();
+           }
+
+            function getDataFromLocalStorage(){
+                    var tasks=JSON.parse(localStorage.getItem("com.techlabs.tasks"));
+                    if(tasks){
+                        return tasks;
+                    }
+                    return [];
+                }
+                
+            function storeDataToLocalStorage(){
+                localStorage.setItem("com.techlabs.tasks",JSON.stringify(taskDetails));
+            }
+        
+        }
+        )();
+        </script>
+</html>

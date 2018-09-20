@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Promise Prime</title>
+    </head>
+
+    <body>
+        <span>Enter a number:</span>
+        <input id="Number" type="text" width="50px">
+        <button id="Button" onclick="getPrime()">Submit</button>
+        <p id="Display"></p>
+    </body>
+    
+    <script>
+        
+        var swabhav= (()=>{
+            var obj={};
+            
+            obj.isNumber=((number)=>{
+                return promise = new Promise(((resolve)=>{
+                    if(parseInt(number)){
+                        number=parseInt(number);
+                        resolve(number);  
+                    }
+                }));
+
+            });
+
+            obj.generatePrime=((number)=>{
+                return new Promise(((resolve)=>{
+                    var array=[];
+
+                    for(var checkNumber=2;checkNumber<number;checkNumber++){
+                        var count=0; 
+                        count=isPrime(checkNumber,count);
+                        if(count==0){
+                            array.push(checkNumber);
+                        }
+                    }
+                    resolve(array);
+                }));
+            });
+                
+            function isPrime(checkNumber,count){
+                for(var divisor=2;divisor<checkNumber;divisor++){
+                    if(checkNumber%divisor==0){
+                        count++;
+                        break;
+                    }
+                }
+                return count;
+            }
+        
+        return obj;
+        })();
+
+        function getPrime(){
+            var number=document.getElementById("Number").value;
+            var paragraph=document.getElementById("Display");
+            
+            swabhav.isNumber(number)
+            .then(((number)=>{
+                return swabhav.generatePrime(number);
+            }))
+            .then(((array)=>{
+                paragraph.innerHTML="";
+                for(var count=0;count<array.length;count++){
+                    paragraph.innerHTML+=array[count]+" ";
+                }
+            }))
+            .catch(((error)=>{
+                paragraph.innerHTML=error;
+            }
+            ));
+
+         }
+
+    </script>
+</html>

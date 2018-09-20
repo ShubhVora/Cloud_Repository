@@ -1,0 +1,43 @@
+<html>
+    </head>
+        <title>Constructor Pattern</title>
+        <script>
+        (function(){
+                function Customer(){
+                var firstName;
+                var lastName;
+
+                this.setFirstName=function(name){
+                    if(name!="" && name!=undefined){
+                        firstName=name;
+                    }
+                    else{
+                        throw "Name is undefined";
+                    }
+                }
+
+                this.setLastName=function(name){
+                    if(name!="" && name!=undefined){
+                        lastName=name;
+                    }
+                    else{
+                        throw "Name is undefined";
+                    }
+                }
+
+                this.getFullName=function(){
+                    return firstName+" "+ lastName;
+                }
+
+                return this;
+                }
+
+                var c1= new Customer();
+                c1.setFirstName("Shubham");
+                c1.setLastName("Varun");
+
+                console.log(c1.getFullName());   
+        })();
+        </script>
+</head>
+ </html>

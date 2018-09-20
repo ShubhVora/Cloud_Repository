@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Session  Storage</title>
+    </head>
+    <body>
+        <button id="Button" style="float:center">Increase Count</button>
+        <div id="Count"></div>  
+    </body>
+<script>
+
+        (function StorageFunction(){
+    
+            var button = document.getElementById("Button");
+            button.addEventListener("click",clickCount);
+    
+            function clickCount() {
+                if(typeof(Storage) !== "undefined") {
+                    if (sessionStorage.clickcount) {
+                        sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+                    } else {
+                        console.log(sessionStorage.clickcount);
+                        sessionStorage.clickcount = 1;
+                    }
+                    document.getElementById("Count").innerHTML = "You have clicked the button " + sessionStorage.clickcount + " times.";
+                } else {
+                    document.getElementById("Count").innerHTML = "Browser does not support web storage feature";
+                }
+            }
+        }
+        )();
+    </script>
+</html>

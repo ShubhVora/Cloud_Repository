@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blue Ball Game</title>
+    </head>
+    <style>
+        .buttonClass{
+            text-align: center;
+            border-radius: 50px;
+            width:50px;
+            margin: 5px;
+        }
+        #BallDivId{
+            width:320px;
+            height:200px
+        }
+    </style>
+
+    <body >
+            <p id="name"></p>
+            <div id="BallDivId"></div>
+    </body>
+    <script>
+        (function(){
+        var time;
+        var value=60,chances=5;
+        var paragraph=document.createElement("p");
+        var rootElement = document.getElementById("BallDivId");
+        var randomNumber=Math.floor(Math.random()*50)+1;
+        startGame();
+        
+        console.log(randomNumber);
+
+        function startGame(){
+
+            paragraph.innerHTML="<h3>Rules for Blue Ball Game:</h3>";
+            paragraph.innerHTML+="<p>1. Find the Blue colour Ball in minimum number of attempts.</p>";
+            paragraph.innerHTML+="<p>2. Green ball indicate shift right & blue ball indicate shift left.</p>";
+            paragraph.innerHTML+="<p>3. Time Limit: 1 min & Total Chances: 5</p>";
+            paragraph.innerHTML+="<p>4. Press Ok to start the game.</p><p>";
+
+            var okButton = document.createElement("button");
+            okButton.innerHTML="Ok";
+            okButton.addEventListener("click",createBall);
+
+            rootElement.appendChild(paragraph);
+            rootElement.appendChild(okButton);
+        }
+
+        function createBall(){
+            
+            rootElement.innerHTML="";
+            time=setInterval(countDown,1000);
+            
+            for(var count=1;count<=50;count++){
+                var ball=document.createElement("button");
+                ball.id=count;
+                ball.setAttribute("class","buttonClass");
+                ball.innerHTML=count;
+                ball.addEventListener("click",changeColor);
+                
+                rootElement.appendChild(ball);
+            }
+        }
+        
+        function countDown(){
+            
+            document.getElementById("name").innerHTML="Remaining Time: "+value+
+            "s  Remaining Chance: "+chances;
+            if(value==0 || chances==0)
+            {
+                clearInterval(time);
+                close();
+            }
+            value--;
+        }
+
+        function changeColor(){
+            console.log(this);
+            if(this.value==""){
+                chances--;
+                if(this.id==randomNumber){
+                    clearInterval(time);
+                    this.style.background="blue";
+                    displayWinner();
+                }   
+                if(this.id>randomNumber){
+                    this.style.background="green";
+                    this.value="pressed";
+                }
+                if(this.id<randomNumber){
+                    this.style.background="red";
+                    this.value="pressed";
+                }
+            }else{
+                alert("The button is already presed.");
+            }
+            
+        }
+
+        function displayWinner(){
+
+            chances=5-chances;
+            paragraph.innerHTML="You took "+chances+" attempt.";
+            if(chances>1)
+            paragraph.innerHTML="You took "+chances+" attempts.";
+
+            var resetButton=createResetButton();
+
+            rootElement.appendChild(paragraph);
+            rootElement.appendChild(resetButton);
+        }
+        
+        function createResetButton(){
+            var resetButton=document.createElement("button");
+            resetButton.innerHTML="Reset";
+            resetButton.addEventListener("click",reloadFunction);
+            
+            return resetButton;
+        }
+        
+        function reloadFunction(){
+                location.reload(false);
+            }
+
+        function close(){
+
+            paragraph.innerHTML="";
+            document.getElementById("name").innerHTML=""; 
+            var resetButton =createResetButton();
+            paragraph.appendChild(resetButton);
+            rootElement.appendChild(paragraph);
+            if(chances==0){
+                document.getElementById("name").innerHTML
+                ="All the Chances are over.You Lose The Game";
+                return "";
+            }
+            document.getElementById("name").innerHTML
+            ="Time Up... Game Over...<p>you Lose The Game.";
+        }
+    
+        })();
+    </script>
+</html>

@@ -1,0 +1,43 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form action="auth.php" method="GET">
+            Name(GET):<input type="text" id="NameGet" name="NameGet"><br>
+            Passowrd(GET):<input type="password" id="PasswordGet" name="PasswordGet"><br>
+            <input type="submit" value="submit" onclick="validationGet()"><br>
+        </form>
+        <form action="auth.php" method="POST">
+            Name(POST):<input type="text" id="NamePost" name="NamePost"><br>
+            Passowrd(POST):<input type="password" id="PasswordPost" name="PasswordPost"><br>
+            <input type="submit" value="submit" onclick="validationPost()">
+        </form>
+    </body>
+    <script>
+        function validationGet(){
+            var name= document.getElementById("NameGet");
+            var password=document.getElementById("PasswordGet");
+
+            if(name.value==""){
+                alert("Name is not entered in get method");
+
+            }
+            if(password.value==""){
+                alert("Password is not entered in get method");
+            }
+        }
+
+        function validationPost(){
+            var name= document.getElementById("NamePost");
+            var password=document.getElementById("PasswordPost");
+
+            if(name.value==""){
+                alert("Name is not entered in post method");
+            }
+            if(password.value==""){
+                alert("Password is not post");
+            }
+        }
+    </script>
+</html>

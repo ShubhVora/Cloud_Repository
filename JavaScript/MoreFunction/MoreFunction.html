@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>More Function</title>
+    <script>
+        function f1(){
+            for(var i=1;i<=10;i++){
+                console.log(i);
+            }
+            console.log("After loop"+i);
+        }
+        
+        f1();
+    </script>
+    
+    <script>
+
+        f2();   
+        function f2(){
+            console.log("Inside f2");
+        }
+        f2();
+
+        var f3=function(){
+            console.log("Inside f3");
+        };
+        f3();
+    </script>
+
+    <script>
+        function f4(number1,cb){
+            console.log(number1);
+            cb(100);
+        }
+
+     
+
+        f4(10,function(no){
+            console.log('callbcked'+no);
+        });
+        
+    </script>
+
+    <script>
+         
+         //Doprocessing
+         console.log("DoProcessing");
+        
+        function doPrrocessing(fnS,fnE){
+            
+            var randomNumber = Math.floor(Math.random()*11);
+            console.log(randomNumber);
+        
+            if(randomNumber>5)
+                fnS(randomNumber);
+            if(randomNumber<=5)
+                fnE(randomNumber);
+        }
+
+        doPrrocessing(function(randomNumber){
+            console.log("Success");
+        },function(randomNumber){
+            console.log("Failed");
+        });
+    </script>
+
+    <script>
+        
+        var f5=function (){
+            console.log("Inside f5");
+        }();
+
+        (function f6(){
+            console.log("Inside f6");
+        })();
+    </script>
+
+</head>
+</html>

@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>XMLHTTP</title>
+    </head>
+    <body>
+        <button id="button">Display</button>
+        <div id="divId">
+        </div>
+    </body>
+    <script>
+        (function(){
+            var button =document.getElementById("button");
+            button.addEventListener("click",startRequest);
+            var  div=document.getElementById("divId");
+            var gif=document.createElement("IMG");    
+            var frame=document.createElement("IFRAME");
+
+            function create(){   
+                 
+                gif.setAttribute("src","gif.gif");
+                gif.setAttribute("height","100px");
+                gif.setAttribute("width","100px");
+                div.appendChild(gif);
+
+                var p=document.createElement("p");
+                div.appendChild(p);
+    
+                frame.setAttribute("id","Frame");
+                frame.setAttribute("width","800px");
+                frame.setAttribute("height","600px");
+                frame.addEventListener("load",hideLoad);
+                frame.setAttribute("src","http://swabhavtechlabs.com/");
+                
+                div.appendChild(frame);
+
+            }
+            
+            function hideLoad(){
+                gif.style.display="none";
+            }
+
+            function startRequest(){
+                var xml=new XMLHttpRequest();
+                xml.onreadystatechange=function(){
+                    if(this.readyState==4 && this.status==200 ){
+                        create();
+                    }
+                }
+
+            xml.open("GET","http://swabhavtechlabs.com/",true);
+           
+            console.log("sending");
+            xml.send();
+            }
+
+        })();
+    </script>
+</html>

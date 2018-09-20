@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slider App</title>
+        <Style>
+            .SliderClass{
+                -webkit-appearance: none; 
+                background-color: burlywood;
+                cursor:pointer;
+                height:25px;
+                width:500px;
+                margin-left: 35%;
+                margin-top: 9%;
+            }
+            .SliderClass::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 20px;
+                height: 22px;
+                background-color: rgb(10, 25, 240);
+                cursor: pointer;
+            }
+        </Style>
+    </head>
+    <body>
+            <input type="range" min="1" max="100" value="0" id="Slider" class="SliderClass" oninput="createButton()">
+            <p Style="text-align:center">Value of Slider: <span id="SliderValue">0</span></p>
+            <div id="ButtonCreation"></div>
+    </body>
+    
+    <script>
+
+        (function (){
+            
+            var slider=document.getElementById("Slider")
+            slider.addEventListener("input",createButton);
+            
+            function createButton() {
+                var sliderValue= document.getElementById("SliderValue");
+                sliderValue.innerHTML = slider.value;
+
+                var createButton = document.getElementById("ButtonCreation");
+                createButton.innerHTML="";
+                
+                for(var count=1;count<=slider.value;count++)
+                {
+                    var button=document.createElement("button");
+                    button.setAttribute("id", count);
+                    button.innerHTML=count;
+                    button.addEventListener("click",alertMessage);
+                    createButton.appendChild(button);
+                }
+            }
+
+            function alertMessage(){
+                alert("Button "+this.id+" is pressed");
+            }
+
+        }
+        )();
+        </script>
+</html>

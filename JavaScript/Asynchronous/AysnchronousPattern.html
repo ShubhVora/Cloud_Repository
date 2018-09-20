@@ -1,0 +1,31 @@
+<html>
+    <body>
+        <title>Asynchronous Pattern</title>
+    </body>
+    <script>
+    
+        var dataService=function(){
+            
+            this.getData=function (){
+                return Math.random();
+            }
+            this.getDataAsync=function(functionCall){
+                setTimeout(functionCall,5000);
+            }
+    
+
+            return this;
+        }();
+        
+        function functionCall(){
+            console.log(Math.random());
+        }
+
+        var d=dataService.getData();
+        console.log(d);
+        dataService.getDataAsync(functionCall);        
+        console.log("End of the script");
+        
+
+    </script>
+</html>

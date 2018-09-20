@@ -1,0 +1,20 @@
+<html>
+
+<head>
+<title>ObjectExample-JSON</title>
+</head>
+
+<body>
+    <p id="ObjectLiteral"></p>
+    <p id="JSON"></p>
+</body>
+<script>
+    var objectLiteral={ name:"Shubham",id:"1"};
+    document.getElementById("ObjectLiteral").innerHTML=objectLiteral.name+" "+objectLiteral.id;
+
+    var JSONtext= JSON.stringify(objectLiteral);
+    var text= JSONtext+" ";
+    document.getElementById("JSON").innerHTML=text;
+</script>
+
+</html>

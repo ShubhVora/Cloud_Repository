@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Admission Form</title>
+
+</head>
+
+<body>
+<form>  
+<table>  
+<tr>  
+    <td>Student Name:</td>  
+    <td><input type="text" id="StudentName"placeholder="Enter Full Name" style="width:150px"/></td>  
+</tr>  
+<tr>  
+    <td >Enter password:</td>  
+    <td><input type="password" id="Password" placeholder="Enter minimum Six Character" style="width:150px"/></td>  
+</tr>  
+<tr>  
+    <td >Enter Email:</td>  
+    <td ><input type="email" value="" id="EmailID" placeholder="Enter Valid Email Id" style="width:150px"/></td>  
+</tr>  
+<tr>  
+    <td >Select Gender:</td>  
+    <td>  
+<input type="radio" name="gender" id="register_gendermale" value="male"/>male  
+<input type="radio" name="gender" id="register_genderfemale" value="female"/>female
+    </td>  
+</tr>
+<tr>
+<td>Enter Subject</td>
+<td>
+ <input type="text" id="SubjectName" list="Subject">  
+  <datalist id="Subject">  
+ <option value="Java">  
+ <option value="C">  
+ <option value="C#">   
+ <option value="XML">   
+ <option value="HTML">
+ <option value="Math1">
+ <option value="Chemistry">
+ <option value="Math2">
+ <option value="Math3">
+ <option value="HTML5">
+ </datalist>
+ </td>
+</tr>
+<tr>
+
+<td>
+<p id="submitButton" style="float:right"></p>
+</td>
+</tr>
+
+</body>
+
+
+<script>
+
+        (function AdmissionForm(){
+    
+            var root = document.getElementById("submitButton");
+            
+            var validateButton = document.createElement("button");
+            validateButton.innerHTML="Submit";
+            validateButton.addEventListener("click",validate);
+            root.appendChild(validateButton);
+    
+            function validate(){
+            if(document.getElementById("StudentName").value==""){
+                alert("Enter Name");
+            }
+            if(document.getElementById("Password").value==""){
+                alert("Enter proper password");
+            }
+            if(document.getElementById("EmailID").value==""){
+                alert("Enter Email ID");
+            }
+            if(document.getElementById("SubjectName").value==""){
+                alert("Select Subject");
+            }
+        }
+     
+        }
+        )();
+    </script>
+</html>

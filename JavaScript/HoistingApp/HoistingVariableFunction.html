@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Hoisting Example</title>
+    </head>
+    <body>
+        <p id="Variable"></p>
+        <p id ="Function"></p>
+    </body>
+
+    <script>
+        (function hoisting(){
+        var num1=10;
+        num2= 10;
+        document.getElementById("Variable").innerHTML=num1+num2;
+        var num2; //Because of variable hoisting
+
+        document.getElementById("Function").innerHTML=addition();
+
+        function addition()
+        {
+            return 50+50;
+        }
+        }
+        )();
+    </script>
+
+</html>

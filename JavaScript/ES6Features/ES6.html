@@ -1,0 +1,55 @@
+<html>
+    </head>
+        <title>ES6</title>
+        <script>
+        (function(){ 
+            
+            //let Feature, block scope
+            console.log("\nlet Feature");
+            var x =10;
+            console.log(x);
+            {
+                let x=5;
+                console.log(x);
+            }
+            console.log(x);
+
+            //const feature block scope & should be delcare & initialize at same time
+            console.log("\nConst Feature");
+            var x =10;
+            console.log(x);
+            {
+                const x=5;
+                console.log(x);
+                //x=50 will give error
+            }
+            x=50;
+            console.log(x);
+
+            //Function alloted default parameter value
+            console.log("\nFunctioin Default Parameter Feature");
+            function addition(x,y=10)
+            {
+                console.log(x+y);
+            }
+
+            addition(10);
+
+            //New Number Propertty
+            console.log("\nNumber Property");
+            console.log(Number.EPSILON);
+            console.log(Number.MIN_SAFE_INTEGER);
+            console.log(Number.MAX_SAFE_INTEGER);
+            Console.log(Number.MAX_VALUE);
+
+            //MultiLine Feature
+
+            console.log(`FirstLine
+            Second Line
+            Third Line`);
+
+
+        })();
+        </script>
+</head>
+ </html>

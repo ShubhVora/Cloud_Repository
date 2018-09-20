@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Local Storage</title>
+    </head>
+
+    <body>
+        <button id="Button" style="float:center">Increase Count</button>
+        <div id="Count"></div>
+    </body>
+
+    <script>
+        
+    (function StorageFunction(){
+
+        var button = document.getElementById("Button");
+        button.addEventListener("click",clickCount);
+
+        function clickCount() {
+                if(typeof(Storage) !== "undefined") {
+                    if (localStorage.clickcount) {
+                        localStorage.clickcount = Number(localStorage.clickcount)+1;
+                    } else {
+                    console.log(localStorage.clickcount);
+                        localStorage.clickcount = 1;
+                    }
+                    document.getElementById("Count").innerHTML = "You have clicked the button " + localStorage.clickcount + " times.";
+                } else {
+                    document.getElementById("Count").innerHTML = "Browser does not support web storage feature";
+                }
+            }
+    
+    }
+    )();
+    
+    </script>
+
+
+</html>

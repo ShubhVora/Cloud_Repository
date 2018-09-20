@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Employee Data</title>
+
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+
+    </head>
+    <body>
+        <table id=Employee >
+            <tr>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                <th>Designation</th>
+                <th>Reportee</th>
+                <th>DOJ</th>
+                <th>Salary</th>
+                <th>Null Value</th>
+                <th>Number</th>
+            </tr>
+        </table>
+    </body>
+    <script>
+        (function(){
+            
+        var http=new XMLHttpRequest();
+        var fileData;
+        var employee;
+        
+        http.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200 ){
+                        fileData=http.responseText;
+                        console.log(fileData);
+                        employee = fileData.split("\n");
+
+                        console.log("\n"+employee[0]);
+
+                        createTable();
+            }
+        }
+        http.open("GET","https://swabhav-tech.firebaseapp.com/emp.txt",true);
+        http.send();
+
+        function createTable(){
+            var employeeTable=document.getElementById("Employee");
+            for(var count =0;count<employee.length; count++){
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                var currentEmployee = employee[count].split(",");
+
+                tr.innerHTML="<td>"+currentEmployee[0]+"</td>";
+                tr.innerHTML+="<td>"+currentEmployee[1]+"</td>";
+                tr.innerHTML+="<td>"+currentEmployee[2]+"</td>";
+                tr.innerHTML+="<td>"+currentEmployee[3]+"</td>";
+                tr.innerHTML+="<td>"+currentEmployee[4]+"</td>";
+                tr.innerHTML+="<td>"+currentEmployee[5]+"</td>";
+                tr.innerHTML+="<td>"+currentEmployee[6]+"</td>";
+                tr.innerHTML+="<td>"+currentEmployee[7]+"</td>"+"</tr>";
+
+                employeeTable.appendChild(tr);
+            }
+        }
+
+        })();
+    </script>
+</html>
