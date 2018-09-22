@@ -1,0 +1,24 @@
+<html>
+
+    <head>
+        <title>ObjectExample-JSON</title>
+    </head>
+
+    <body>
+        <p id="ObjectLiteral"></p>
+        <p id="JSON"></p>
+    </body>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+
+    <script>
+        var objectLiteral={ name:"Shubham",id:"1"};
+        $("#ObjectLiteral").append(objectLiteral.name+" "+objectLiteral.id);
+
+        var JSONtext= JSON.stringify(objectLiteral);
+        var text= JSONtext+" ";
+        $("#JSON").append(text);
+    </script>
+
+</html>

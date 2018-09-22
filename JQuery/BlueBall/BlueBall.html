@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blue Ball Game</title>
+    </head>
+    
+    <style>
+        .buttonClass{
+            text-align: center;
+            border-radius: 50px;
+            width:50px;
+            margin: 5px;
+        }
+        #BallDivId{
+            width:320px;
+            height:200px
+        }
+    </style>
+
+    <body>
+            <p id="name"></p>
+            <div id="BallDivId" class="BallDivId"></div>
+            <p id="Result"></p>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+
+    <script>
+        (function(){
+        var time;
+        var value=60,chances=5;
+        var randomNumber=Math.floor(Math.random()*50)+1;
+        startGame();
+        
+        console.log(randomNumber);
+
+        function startGame(){
+            $("#name").append(`<h3>Rules for Blue Ball Game:</h3>
+            1. Find the Blue colour Ball in minimum number of attempts.
+            <br>2. Green ball indicate shift right & blue ball indicate shift left.
+            <br>3. Time Limit: 1 min & Total Chances: 5
+            <br>4. Press Ok to start the game.`);
+            
+            var $input = $('<br><br><button>Start Game</button>');
+            $("#name").append($input);
++
+            $("button").click(function(){
+                createBall();
+            });
+            
+           
+        }
+
+        function createBall(){ 
+            $("#name").empty();
+            time=setInterval(function (){
+            $("#name").empty(); 
+            $("#name").append("Remaining Time: "+ value+"s Remaining Chances: "+
+             chances);
+            
+            if(value==0|| chances==0){
+                $("button").prop("disabled",true);
+                clearInterval(time);
+                close();
+            }
+            value--;
+
+        },"1000");
+            
+            $("#BallDivId").append("");
+            for(var count=1;count<=50;count++){
+            
+            var $input = $("<button>"+count+"</button>");
+            $input.addClass("buttonClass");
+            $input.attr("id",count);
+            $input.attr("value","");
+            $input.css("background-color","grey");
+            $input.click(function(){
+                check(this);
+            });
+            $("#BallDivId").append($input);
+            }
+        }
+        
+        
+        function displayWinner(){
+            $("button").prop("disabled",true);
+            chances=5-chances;
+            if(chances==1)
+            $("#Result").append("You took "+chances+" attempt.");
+            if(chances>1)
+            $("#Result").append("You took "+chances+" attempts.");
+
+            var resetButton =createResetButton();
+            $("#BallDivId").append(resetButton);
+        }
+
+        function check(button){
+            if($(button).attr("value")==""){
+                chances--;
+                if($(button).attr("id")==randomNumber){
+                    clearInterval(time);
+                    $(button).css("background-color","blue");
+                    displayWinner();
+                }if($(button).attr("id")>randomNumber){
+                    $(button).css("background-color","green");
+                    $(button).attr("value","pressed");
+                }
+                if($(button).attr("id")<randomNumber){
+                    $(button).css("background-color","red");
+                    $(button).attr("value","pressed");
+                }
+            }else{
+                alert("the button is already pressed");
+            }
+        }
+         
+        function createResetButton(){
+            var resetButton=$("<button>Reset</button>");
+            resetButton.click(function(){
+                location.reload();
+            });
+            
+            return resetButton;
+        }
+
+        function close(){
+
+            var resetButton =createResetButton();
+            $("#BallDivId").append(resetButton);
+            if(chances==0){
+                $("#Result").append("All the Chances are over.You Lost The Game");
+                return "";
+            }
+            $("#Result").append("Time Up... Game Over...<p>You Lost The Game.");
+        }
+    
+        })();
+
+    </script>
+
+
+</body>
+</html>

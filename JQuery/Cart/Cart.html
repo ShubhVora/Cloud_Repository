@@ -1,0 +1,171 @@
+<html>
+
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+    <div>
+        <span>Products</span>
+        <select id="Product" style="width:150px"></select>
+        <span id="Price"></span>
+        <span>&nbsp&nbspQuantity</span>
+        <input id="Quantity" type="number" name="Quantity" min=0 />
+        <button id="AddToCart">Add To Cart</button>
+    </div>
+    <br><br>
+    <table id="DisplayProducts" class="table table-bordered table-responsive"></table>
+</body>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+</script>
+
+<script>
+    var productSelected;
+    var service = (() => {
+        var obj = [];
+        var productsName = [{ "product": "Iphone", "price": "5000" }, { "product": "Redmi Note3", "price": "6000" },
+        { "product": "OnePlus", "price": "7000" }, { "product": "SamSung", "price": "4000" },
+        { "product": "Nokia", "price": "8000" }, { "product": "Reliance", "price": "5000" }];
+        var selectedProducts = [];
+
+        obj.deleteSelectedProductData = ((number) => {
+            selectedProducts.splice(number, 1);
+        });
+
+        obj.getSelectedProductsData = (() => {
+            return new Promise(function (resolve, reject) {
+                resolve(selectedProducts);
+                reject("Selected Product List Not sent");
+            }
+            );
+        });
+
+        obj.updateSelectedProuctData = ((selectedProduct) => {
+            var index = isSelectedProductPresent(selectedProduct.product);
+            if (index > -1)
+                selectedProducts[index].quantity = selectedProduct.quantity;
+            else
+                selectedProducts.push(selectedProduct);
+        });
+
+        obj.getProductsData = (() => {
+            return new Promise(function (resolve, reject) {
+                resolve(productsName);
+                reject("Product Data Not send");
+
+            });
+        });
+
+        function isSelectedProductPresent(selectedProductName) {
+            for (var count = 0; count < selectedProducts.length; count++) {
+                if (selectedProductName == selectedProducts[count].product) {
+                    return count;
+                }
+            }
+
+            return -1;
+        }
+
+        return obj;
+    })();
+
+    (function generateItemDetails() {
+
+        service.getProductsData().then(function (productsData) {
+            $("#AddToCart").click(addToProductList);
+            createDropDownOFProducts(productsData);
+            $("#Product").click("change", () => {
+                $("#Price").text($("#Product").val());
+            });
+        }, function (error) {
+            console.log(error);
+        }
+        )
+
+    })();
+
+    function createDropDownOFProducts(productsData) {
+        var option = $("<option> Select Product</option>");
+        option.attr("value", "");
+        $("#Product").append(option);
+        for (count = 0; count < productsData.length; count++) {
+            var option = $("<option>" + productsData[count].product + "</option>");
+            option.attr("value", productsData[count].price);
+            option.attr("name", productsData[count].product);
+            $("#Product").append(option);
+        }
+    }
+
+    function addToProductList() {
+
+        var selectedProductName = $("#Product").find('option:selected').attr("name");
+        var selectedProductPrice = $("#Product").val();
+        productSelected = {
+            "product": selectedProductName, "price": selectedProductPrice,
+            "quantity": $("#Quantity").val()
+        };
+
+        service.updateSelectedProuctData(productSelected);
+
+        displayTable();
+
+    }
+
+    function displayTable() {
+
+        service.getSelectedProductsData().then(function (selectedProductList) {
+            $("#DisplayProducts").empty();
+            createTableHeader();
+            for (var count = 0; count < selectedProductList.length; count++) {
+                createTableElements(count, selectedProductList);
+            }
+        }, function (error) {
+            console.log(error);
+        }
+        );
+    }
+
+    function createTableHeader() {
+        $("#DisplayProducts").append("<tr>");
+        $("#DisplayProducts").append("<th>Number</th>");
+        $("#DisplayProducts").append("<th>Product Name</th>");
+        $("#DisplayProducts").append("<th>Quantity</th>");
+        $("#DisplayProducts").append("<th>Price per Quantity</th>");
+        $("#DisplayProducts").append("<th>Total Price</th>");
+        $("#DisplayProducts").append("<th>Delete Option</th>");
+        $("#DisplayProducts").append("</tr>");
+    }
+
+    function createTableElements(count, selectedProductList) {
+        var tableNumber = count + 1;
+        $("#DisplayProducts").append("<tr>");
+        $("#DisplayProducts").append("<td>" + tableNumber + "</td>");
+        $("#DisplayProducts").append("<td>" + selectedProductList[count].product + "</td>");
+        $("#DisplayProducts").append("<td>" + selectedProductList[count].quantity + "</td>");
+        $("#DisplayProducts").append("<td>" + selectedProductList[count].price + "</td>");
+        var totalPrice = parseFloat(selectedProductList[count].quantity)
+        totalPrice *= parseFloat(selectedProductList[count].price);
+        $("#DisplayProducts").append("<td>" + totalPrice + "</td>");
+        createDeleteButton(count, selectedProductList);
+        $("#DisplayProducts").append("</tr>");
+
+    }
+
+    function createDeleteButton(count, selectedProductList) {
+        var deleteButton = $("<button>Delete</button>");
+        deleteButton.attr("name", selectedProductList[count].product);
+        deleteButton.attr("id", count);
+        deleteButton.click(function () {
+        service.deleteSelectedProductData($(this).attr("id"));
+
+            displayTable();    
+        });
+        $("#DisplayProducts").append(deleteButton);
+    }
+
+
+</script>

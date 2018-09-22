@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDoList</title>
+        <style>
+            .CheckBoxClass{
+                width: 25px;
+                height:15px;
+                padding: 15px;
+            }
+            .TextFieldNone{
+                height:25px;
+                width:150px;
+                text-decoration:none;
+            }
+            .TextFieldLine{
+                height:25px;
+                width:150px;
+                text-decoration:line-through;
+            }
+            .SpanClass{
+                height:25px;
+                width:60px;
+				margin: 15px;
+                
+            }
+        </style>
+    </head>
+  
+    <body>
+        <table align="center" style="padding: 15px;">
+            <tr >
+                <th><b style="height:50px;">Task:</b></th>
+                <th style="padding: 15px;"><input id="TaskName" style="width:200px; height:30px" placeholder="Enter your task list"></th>
+                <th style="padding: 15px;"><img src="enter.png" id="AddTask" style="height:30px; width:50px;"></th>
+             </tr>
+        </table>
+        <div id ="result"></div>
+        <p id="Rest"></p>
+          
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+    <script>
+
+            (function toDoFunction(){
+                
+                (function (){
+                    taskStorageDetail=getDataFromLocalStorage();
+                    displayTaskList();
+                })();
+                var taskStorageDetail=getDataFromLocalStorage();
+                
+                $("#AddTask").click(function (){
+                    addTask($("#TaskName"));
+                });
+
+                $("#TaskName").keyup(function(event){
+                    event.preventDefault();
+                    var code = event.which || event.keycode;
+                        if(code===13){
+                            addTask(this);
+                        }
+                });
+    
+                         
+                function addTask(taskNameReference){
+                    var date =getDateTime();
+                    if($(taskNameReference).val()!=""){
+                        taskStorageDetail.push({
+                            name:$(taskNameReference).val(), 
+                            isChecked:false, 
+                            dateTime:date, 
+                        });
+                        storeDataToLocalStorage();
+                        displayTaskList();
+                    }
+                    else{
+                        alert("Enter the task details.");
+                    }
+                }
+                
+                function getDateTime(){
+                    var currentDate = new Date();
+                    return currentDate;
+                }
+    
+                function displayTaskList(){
+                    var rootElement =$("#result");
+                    rootElement.empty();
+    
+                    for(var index=taskStorageDetail.length-1; index>=0;index--){
+                    
+                        var checkBoxElement=createCheckBoxElement(index);
+                        var taskSpanElement= createTaskSpanElement(index);
+                        var dateSpanElement= createDateSpanElement(index);
+                        var deleteButtonElement =createDeleteButtonElement(index);
+                    
+                        var childElement = appendCreatedElement(checkBoxElement,taskSpanElement,
+                        dateSpanElement,deleteButtonElement);
+    
+                        rootElement.append(childElement);
+                    }
+                }
+                    
+                function appendCreatedElement(checkBoxElement,taskSpanElement,dateSpanElement,
+                deleteButtonElement){
+                    var childElement=$("<p>");
+                    childElement.append(checkBoxElement);
+                    childElement.append(taskSpanElement);
+                    childElement.append(dateSpanElement);
+                    childElement.append(deleteButtonElement);
+                    return childElement;
+                }
+    
+                function createDeleteButtonElement(index){
+                    var deleteButtonElement=$("<button>");
+                    deleteButtonElement.attr("id", index);
+                    deleteButtonElement.text("delete");
+                    deleteButtonElement.addClass("SpanClass");
+                    deleteButtonElement.click(function(){
+                        removeTask(this);
+                    });
+    
+                    return deleteButtonElement;
+                }
+    
+                function createDateSpanElement(index){
+                    console.log(taskStorageDetail[index].dateTime);
+                    var dateSpanElement =$("<span> ");
+                    dateSpanElement.text(taskStorageDetail[index].dateTime);
+                    return dateSpanElement;
+                }
+    
+                function createTaskSpanElement(index){
+                    console.log(taskStorageDetail[index].name);
+                    var taskSpanElement=$("<span> ");
+                    taskSpanElement.addClass("TextFieldNone");
+                    taskSpanElement.text(taskStorageDetail[index].name);
+                    if(taskStorageDetail[index].isChecked==true){
+                        taskSpanElement.addClass("TextFieldLine");
+                    }
+                    
+                    return taskSpanElement;
+                }
+    
+                function createCheckBoxElement(index){
+                    var checkBoxElement=$("<input>");
+                    checkBoxElement.attr("type","checkbox");
+                    checkBoxElement.addClass("CheckBoxClass");
+                    checkBoxElement.prop("unchecked");
+                    checkBoxElement.attr("id", index);
+                    checkBoxElement.click(function(){
+                            console.log($(this));
+                            toggleStrike(this);
+                    });
+                    if(taskStorageDetail[index].isChecked==true)
+                    checkBoxElement.prop("checked");
+                    
+                    return checkBoxElement;
+                }
+                
+                function removeTask(deleteButtonReference){
+                    taskStorageDetail.splice($(deleteButtonReference).attr("id"),1);
+                    displayTaskList();
+                    storeDataToLocalStorage();
+                }
+    
+                function toggleStrike(checkBoxReference){
+                    var pointer=$(checkBoxReference).attr("id");
+                    console.log(taskStorageDetail[pointer].isChecked);
+                    taskStorageDetail[pointer].isChecked=!taskStorageDetail[pointer].isChecked;
+                    console.log(taskStorageDetail[pointer].isChecked);
+                    displayTaskList();
+                    storeDataToLocalStorage();
+               }
+    
+                function getDataFromLocalStorage(){
+                        var tasks=JSON.parse(localStorage.getItem("com.techlabs.tasks"));
+                        if(tasks){
+                            return tasks;
+                        }
+                        return [];
+                    }
+                    
+                function storeDataToLocalStorage(){
+                    console.log(JSON.stringify(taskStorageDetail));
+                    localStorage.setItem("com.techlabs.tasks",JSON.stringify(taskStorageDetail));
+                }
+            
+            }
+            )();
+            </script>
+    </body>
+
+</html>

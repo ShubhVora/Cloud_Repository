@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Time App</title>
+    </head>
+    
+    <body>
+        <p>SetTimeOut Example :-</p>
+        <p id="display"></p>
+        <button id="button" >Click me</button>
+    </body>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+
+    <script>
+        (function(){
+
+        $("#button").click(setTimeout(print,5000));
+        function print(){
+            $("#display").append("\tText is shown after 5 seconds...");
+        }
+
+        })();
+    </script>
+</html>

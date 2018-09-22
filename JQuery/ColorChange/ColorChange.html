@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Change Colour</title>
+    </head>
+    <body>
+        <select id="DropDown">
+    </body>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+
+    <script>
+        var color=[ {colourName:"white",colourCode:"#ffffff"},
+                    {colourName:"red",colourCode:"#FF0000"},
+                    {colourName:"blue",colourCode:"#ADD8E6"},
+                    {colourName:"green",colourCode:"#9ACD32"},
+                    {colourName:"yellow",colourCode:"#FFFF33"}];
+
+        var dropDown=$("#DropDown");
+        dropDown.empty();
+        
+        for(var count=0;count<color.length;count++){
+            var $option=$("<option>"+color[count].colourName+"</option>");
+            $option.attr("id",count);
+            $option.attr("value",color[count].colourCode);
+            console.log($option);
+            
+            dropDown.append($option);
+        }
+        
+        dropDown.click(function (){
+           changeBackground(this); 
+        });
+
+        function changeBackground(reference){
+            $("body").css("background-color",$(reference).val());
+        }
+    
+
+    </script>
+</html>

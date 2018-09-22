@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Session  Storage</title>
+    </head>
+    <body>
+        <button id="Button" style="float:center">Increase Count</button>
+        <div id="Count"></div>  
+    </body>
+    
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+
+    <script>
+
+        (function StorageFunction(){
+    
+            var button = $("#Button");
+            button.click(clickCount);
+    
+            function clickCount() {
+                $("#Count").empty();
+                if(typeof(Storage) !== "undefined") {
+                    if (sessionStorage.clickcountJQuery) {
+                        sessionStorage.clickcountJQuery = Number(sessionStorage.clickcountJQuery)+1;
+                    } else {
+                        console.log(sessionStorage.clickcountJQuery);
+                        sessionStorage.clickcountJQuery = 1;
+                    }
+                    $("#Count").append("You have clicked the button " + sessionStorage.clickcountJQuery + " times.");
+                } else {
+                    $("#Count").append("Browser does not support web storage feature");
+                }
+            }
+        }
+        )();
+    </script>
+</html>

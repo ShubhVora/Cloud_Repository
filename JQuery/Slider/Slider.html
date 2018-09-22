@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slider App</title>
+        
+        <Style>
+            .SliderClass{
+                -webkit-appearance: none; 
+                background-color: burlywood;
+                cursor:pointer;
+                height:25px;
+                width:500px;
+                margin-left: 35%;
+                margin-top: 9%;
+            }
+            .SliderClass::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 20px;
+                height: 22px;
+                background-color: rgb(10, 25, 240);
+                cursor: pointer;
+            }
+        </Style>
+    
+    </head>
+
+    <body>
+            <input type="range" min="1" max="100" value="0" id="Slider" class="SliderClass" >
+            <p Style="text-align:center">Value of Slider: <span id="SliderValue">0</span></p>
+            <div id="ButtonCreation"></div>
+    </body>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+    
+    <script>
+
+        (function (){
+            
+            $("#Slider").click("input",createButton);
+            
+            function createButton() {
+
+                $("#SliderValue").empty();
+                $("#SliderValue").append($("#Slider").val());
+                
+                $("#ButtonCreation").empty();
+                for(var count=1;count<=$("#Slider").val();count++)
+                {
+                    var button=$("<button>");
+                    button.attr("id", count);
+                    button.text(count);
+                    button.click("click",alertMessage);
+                    $("#ButtonCreation").append(button);
+                }
+            }
+
+            function alertMessage(){
+                alert("Button "+this.id+" is pressed");
+            }
+
+        }
+        )();
+        </script>
+</html>

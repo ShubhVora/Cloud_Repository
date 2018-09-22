@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Promise Prime</title>
+    </head>
+
+    <body>
+        <span>Enter a number:</span>
+        <input id="Number" type="text" width="50px">
+        <button id="Button" onclick="getPrime()">Submit</button>
+        <p id="Display"></p>
+    </body>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+    
+    <script>
+        
+        var swabhav= (()=>{
+            var obj={};
+            
+            obj.isNumber=((number)=>{
+                return promise = new Promise(((resolve)=>{
+                    if(parseInt(number)){
+                        number=parseInt(number);
+                        resolve(number);  
+                    }
+                }));
+
+            });
+
+            obj.generatePrime=((number)=>{
+                return new Promise(((resolve)=>{
+                    var array=[];
+
+                    for(var checkNumber=2;checkNumber<number;checkNumber++){
+                        var count=0; 
+                        count=isPrime(checkNumber,count);
+                        if(count==0){
+                            array.push(checkNumber);
+                        }
+                    }
+                    resolve(array);
+                }));
+            });
+                
+            function isPrime(checkNumber,count){
+                for(var divisor=2;divisor<checkNumber;divisor++){
+                    if(checkNumber%divisor==0){
+                        count++;
+                        break;
+                    }
+                }
+                return count;
+            }
+        
+        return obj;
+        })();
+
+        function getPrime(){
+            var number=$("#Number").val();
+            
+            swabhav.isNumber(number)
+            .then(((number)=>{
+                return swabhav.generatePrime(number);
+            }))
+            .then(((array)=>{
+                $("#Display").empty();
+                for(var count=0;count<array.length;count++){
+                    $("#Display").append(array[count]+" ");
+                }
+            }))
+            .catch(((error)=>{
+                $("#Display").append(error);
+            }
+            ));
+
+         }
+
+    </script>
+</html>

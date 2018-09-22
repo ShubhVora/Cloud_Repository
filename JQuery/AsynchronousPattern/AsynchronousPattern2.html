@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <title>Asynchronous Pattern</title>
+    </body>
+    <script>
+    
+        var calculate= function(){
+        var obj={};
+        
+        obj.cubeEvenNumber=function(number,fnSuccess, fnFailure){
+            setTimeout( function(){
+                if(number%2==0){
+                    fnSuccess(Math.pow(number,3));
+                }else{
+                    fnFailure("Not an Even Number");
+                }  
+            },5000);
+        
+        };
+            return obj;
+        }();
+
+        calculate.cubeEvenNumber(4,function(number){
+            console.log(number);
+        },function(error){
+            console.log(error);
+        });
+        
+        console.log("hi");
+        
+
+    </script>
+</html>

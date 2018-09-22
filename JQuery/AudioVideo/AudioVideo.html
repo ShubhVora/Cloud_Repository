@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Audio-Video</title>    
+    </head>
+    <body>
+        <div>
+            <button id="playSong" >Play Song</button>
+            <button id="pauseSong">Pause Song</button>
+            <audio id="Song" style="height:50px; width:50px;float:right;">  
+                <source src="audio.mp3" type="audio/mpeg">  
+            </audio>
+        </div>
+        <div>
+            <button id="playVideo" >Play Video</button>
+            <button id ="pauseVideo" >Pause Video</button>
+            <video id="Video" style="height:500px; width:500px;float:left;" >  
+            <source src="video.mp4" type="video/mp4" style="width:100px; height:100px;">  
+             </video> 
+        </div>   
+    </body>
+    
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+
+    <script>
+
+        (function action(){
+
+            $("#playSong").click(playSong);
+            $("#pauseSong").click(pauseSong);
+            $("#playVideo").click(playVideo);
+            $("#pauseVideo").click(pauseVideo);
+           
+            function playVideo(){
+                $("#Video")[0].play();
+
+            }
+            function pauseVideo(){
+                $("#Video")[0].pause();
+                    
+            }
+            function playSong(){
+                $("#Song")[0].play();
+            }
+            function pauseSong(){
+                $("#Song")[0].pause();
+            }
+    
+        }
+        )();
+    </script>   
+</html>

@@ -1,0 +1,457 @@
+<html>
+
+<head>
+    <title>Question Bank</title>
+
+    <style>
+        .NewUserClass {
+            color: blue;
+            font-size: 15px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="Login"></div>
+    <p id="displayQuizQuestion"></p>
+</body>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+</script>
+
+<script>
+    (function questionApp() {
+
+        var userId, currentUser;
+        var number = -1, result = 0, randomArray = [];
+        var rootElement = $("#displayQuizQuestion");
+        var quiz;
+
+        (() => {
+            userId = getUserId();
+            if (checkUserStatus()) {
+                setCurrentPage();
+            } else {
+                signInPage();
+            }
+        })();
+
+        function checkUserStatus() {
+            for (var countUser = 0; countUser < userId.length; countUser++) {
+                if (userId[countUser].isLoginStatus == true) {
+                    currentUser = userId[countUser];
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function getUserId() {
+            var users = JSON.parse(localStorage.getItem("techlabs.quiz.userid"));
+            if (users) {
+                return users;
+            }
+            return [];
+        }
+
+        function storeUserId() {
+            localStorage.removeItem("techlabs.quiz.userid");
+            localStorage.setItem("techlabs.quiz.userid", JSON.stringify(userId));
+        }
+
+        function signInPage() {
+            $("#displayQuizQuestion").empty();
+            $("#Login").empty();
+
+            $("#Login").append("<h2 style='text-align:center'>Welcome To Quiz<h2><br>");
+            $("#login").append("<table>");
+
+            createUserIdText();
+            createUserIdTextInputField();
+            createPasswordText();
+            createPasswordTextInputField();
+            createSignInButton();
+            createNewUserAccountText();
+        }
+
+        function createUserIdText() {
+            $("#Login").append("<tr>");
+            $("#Login").append($("<span></span>").text("User Id: "));
+            $("#Login").append("</tr>");
+        }
+
+        function createUserIdTextInputField() {
+            $("#Login").append("<tr>");
+            var inputId = $("<input>");
+            inputId.attr("type", "text");
+            inputId.attr("id", "UserId");
+            $("#Login").append(inputId);
+            $("#Login").append("</tr>");
+
+        }
+
+        function createPasswordText() {
+            $("#Login").append("<tr>");
+            $("#Login").append($("<span></span>").text("Password: "));
+            $("#Login").append("</tr>");
+
+        }
+
+        function createPasswordTextInputField() {
+            $("#Login").append("<tr>");
+            var passwordField = $("<input>");
+            passwordField.attr("type", "password");
+            passwordField.attr("id", "passwordField");
+            $("#Login").append(passwordField);
+            $("#Login").append("</tr>");
+        }
+
+        function createSignInButton() {
+            $("#Login").append("<tr>");
+            var signInButton = $("<button></button>");
+            signInButton.text("SignIn");
+            signInButton.attr("id", "SignInButton");
+            signInButton.click(validateUserId);
+            $("#Login").append(signInButton);
+            $("#Login").append("</tr>");
+        }
+
+        function createNewUserAccountText() {
+            $("#Login").append("<tr>");
+            var newUserLink = $("<span></span>").text("Create New Account?... Click me");
+            newUserLink.addClass("NewUserClass");
+            newUserLink.attr("id", "NewUser");
+            newUserLink.css("cursor", "pointer");
+            newUserLink.click(createUserId);
+            $("#Login").append(newUserLink);
+            $("#Login").append("</tr>");
+        }
+
+        function validateUserId() {
+            var count = 0;
+            if ($("#UserId").val() != "" && $("#passwordField").val() != "") {
+                for (var countUser = 0; countUser < userId.length; countUser++) {
+                    if (userId[countUser].userId == $("#UserId").val() && userId[countUser].password == $("#passwordField").val()) {
+                        count++;
+                        userId[countUser].isLoginStatus = true;
+                        currentUser = userId[countUser];
+                        storeUserId();
+                        setCurrentPage();
+                        break;
+                    }
+                }
+                if (count == 0)
+                    alert("UserId or password is incorrect");
+            } else {
+                alert("Fill All Details...");
+            }
+        }
+
+        function createUserId() {
+            $("#SignInButton").remove();
+            $("#NewUser").remove();
+            $("#Userid").empty();
+            $("#passwordField").empty();
+
+            createConfirmPasswordText();
+            createConfirmPasswordTextInputField();
+            createSignUpButton();
+        }
+
+        function createConfirmPasswordText() {
+            $("#Login").append("<tr>");
+            $("#Login").append($("<span></span>").text("Confirm Password: "));
+            $("#Login").append("</tr>");
+        }
+
+        function createConfirmPasswordTextInputField() {
+
+            $("#Login").append("<tr>");
+            var confirmPasswordField = $("<input>");
+            confirmPasswordField.attr("type", "password");
+            confirmPasswordField.attr("id", "ConfirmPasswordField");
+            var confirmPasswordErrorfield = $("<span>");
+            confirmPasswordErrorfield.attr("id", "confirmPasswordError");
+            confirmPasswordField.click("keypress", function (event) {
+                event.preventDefault();
+                $("#confirmPasswordError").empty();
+            });
+
+            $("#Login").append(confirmPasswordField);
+            $("#Login").append(confirmPasswordErrorfield);
+            confirmPasswordField.focusout(function () {
+                if ($("#passwordField").val() != $("#ConfirmPasswordField").val() && $("#passwordField").val() != "") {
+                    $("#confirmPasswordError").css("color", "red");
+                    $("#confirmPasswordError").css("font-size", "15px");
+                    $("#confirmPasswordError").text("Password & Confirm Password are not equal");
+                }
+            });
+
+
+        }
+
+        function createSignUpButton() {
+            $("#Login").append("<tr>");
+            var signUpButton = $("<button></button>");
+            signUpButton.text("SignUp");
+            signUpButton.attr("id", "SignUpButton");
+            signUpButton.click(registerUserId);
+            $("#Login").append(signUpButton);
+            $("#Login").append("</tr>");
+        }
+
+        function registerUserId() {
+            if ($("#UserId").val() != "" && $("#passwordField").val() != "" && $("#ConfirmPasswordField").val() != "") {
+                var user = {
+                    "userId": $("#UserId").val(), "password": $("#passwordField").val(), "results": [], "Levels": 0,
+                    "isLoginStatus": true
+                };
+                if (!isUserExist(user)) {
+                    var user = {
+                        "userId": $("#UserId").val(), "password": $("#passwordField").val(), "results": [], "Levels": 0,
+                        "isLoginStatus": true
+                    };
+                    currentUser = user;
+                    console.log(user);
+                    userId.push(user);
+                    storeUserId();
+                    setCurrentPage();
+                }
+                else {
+                    alert("User Already Exist");
+                }
+            } else {
+                alert("Fill Details Properly...");
+            }
+        }
+
+        function isUserExist(user) {
+            for (var countUser = 0; countUser < userId.length; countUser++) {
+                if (user.userId == userId[countUser].userId) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function setCurrentPage() {
+            $("#Login").empty();
+            rootElement.empty();
+            $("#Login").append("User Id: " + currentUser.userId + "<br>");
+            var startQuizButton = $("<button></button>");
+            startQuizButton.text("StartQuiz");
+            startQuizButton.attr("id", "StartQuiz");
+            startQuizButton.click(startQuiz);
+            $("#Login").append(startQuizButton);
+            $("#Login").append("  ");
+
+            var statusButton = $("<button></button>");
+            statusButton.text("Status");
+            statusButton.attr("id", "Status");
+            statusButton.click(showLevelsResult);
+            $("#Login").append(statusButton);
+            $("#Login").append("  ");
+
+            var logoutButton = $("<button></button>");
+            logoutButton.text("Logout");
+            logoutButton.attr("id", "Logout");
+            logoutButton.click(logout);
+            $("#Login").append(logoutButton);
+            $("#Login").append("  ");
+
+        }
+
+        function createHomePageButton() {
+            var homeButton = $("<button></button>");
+            homeButton.text("Home");
+            homeButton.attr("id", "HomeButton");
+            homeButton.click(setCurrentPage);
+            $("#Login").append(homeButton);
+            $("#Login").append("  ");
+        }
+
+        function startQuiz() {
+            $("#StartQuiz").remove();
+            $("#Status").remove();
+            retrieve();
+        }
+
+        function showLevelsResult() {
+
+            rootElement.empty();
+            var results = currentUser.results;
+            rootElement.append("<b>Result:-</b>");
+            for (var countUser = 0; countUser < results.length; countUser++) {
+                var testCount = countUser + 1;
+                var wrong = 6 - results[countUser];
+                rootElement.append("<br>Test " + testCount + ":<br>&nbsp&nbsp&nbsp=> Right Answer: " + results[countUser] +
+                    "<br>&nbsp&nbsp&nbsp=> Wrong Answer: " + wrong);
+
+            }
+        }
+
+        function logout() {
+            currentUser.isLoginStatus = false;
+            updateStorageData();
+            signInPage();
+        }
+
+        function updateStorageData() {
+            for (var countUser = 0; countUser < userId.length; countUser++) {
+                if (userId[countUser].userid == currentUser.userid && userId[countUser].password == currentUser.password) {
+                    userId[countUser].levels = currentUser.levels;
+                    userId[countUser].results = currentUser.results;
+                    break;
+                }
+            }
+            storeUserId();
+        }
+
+        function retrieve() {
+            $.ajax({
+                url: "QuizQuestion.json",
+                success: (text) => {
+                    console.log(text.QuestionAnswer);
+                    quiz = text.QuestionAnswer;
+                    console.log("Successfully Retrieved...");
+                    number = -1;
+                    generateRandomNumber();
+                    start();
+                }
+            });
+        }
+
+        function loadQuestion(randomNumber) {
+            rootElement.empty();
+            createQuestionElement(randomNumber);
+            createRadioButtonElement(randomNumber);
+            createSubmitButtonElement();
+        }
+
+        function createQuestionElement(randomNumber) {
+            var questionElement = $("<p></p>");
+            var questionNumber = number + 1;
+            questionElement.append("<p><b>Question:</b> " + questionNumber + "/" + 6 + "</p>"
+                + quiz[randomNumber].question);
+            rootElement.append(questionElement);
+        }
+
+        function createRadioButtonElement(randomNumber) {
+
+            for (var count = 0; count < quiz[randomNumber].options.length; count++) {
+
+                var spanElement = $("<span></span>");
+                spanElement.text(quiz[randomNumber].options[count]);
+
+                var radioButtonElement = $("<input>");
+                radioButtonElement.attr("type", "radio");
+                radioButtonElement.attr("id", number);
+                radioButtonElement.click(checkResult);
+                radioButtonElement.attr("name", quiz[randomNumber].answer);
+                radioButtonElement.attr("value", quiz[randomNumber].options[count]);
+
+                rootElement.append(radioButtonElement);
+                rootElement.append(spanElement);
+                rootElement.append($("<br>"));
+
+            }
+        }
+
+        function createSubmitButtonElement() {
+            var submitButtonElement = $("<button></button>");
+            submitButtonElement.attr("id", number);
+            submitButtonElement.text("Next Question");
+            if ((number + 1) == 6) {
+                submitButtonElement.text("Submit");
+            }
+            submitButtonElement.click(start);
+            rootElement.append(submitButtonElement);
+        }
+
+        function start() {
+            number++;
+            console.log(randomArray);
+            var randomNumber = randomArray[number];
+            console.log(randomArray);
+
+            if (number < 6) {
+                loadQuestion(randomNumber);
+            }
+
+            if (number == 6) {
+                randomArray = [];
+                console.log(randomArray);
+                currentUser.results.push(result);
+                currentUser.levels++;
+                updateStorageData();
+                alert("Press OK to check the result.");
+                drawPieChart();
+            }
+        }
+
+        function generateRandomNumber() {
+
+            while (randomArray.length < 6) {
+                var random = Math.floor(Math.random() * quiz.length);
+                console.log(random);
+                if (randomArray.indexOf(random) > -1) continue;
+                randomArray.push(random);
+            }
+            console.log(randomArray);
+        }
+
+        function drawPieChart() {
+            rootElement.empty();
+
+            createHomePageButton();
+            rootElement.append("Result of current test:<br>");
+            var rightAnswer = result / 6;
+
+            rootElement.append('<canvas id="Circle" height="400" width="400" style="border:2px solid black;" >');
+
+            var canvasElement = document.getElementById("Circle");
+            var context = canvasElement.getContext("2d");
+
+            context.beginPath();
+            context.fillStyle = "green";
+            context.moveTo(140, 220);
+            context.arc(140, 220, 130, 0, 2 * Math.PI * rightAnswer);
+            context.fill();
+            context.closePath();
+
+
+            context.fillStyle = "Red";
+            context.beginPath();
+            context.moveTo(140, 220);
+            context.arc(140, 220, 130, 2 * Math.PI * rightAnswer, 2 * Math.PI);
+            context.fill();
+            context.closePath();
+
+            context.fillStyle = "green";
+            context.fillRect(300, 20, 10, 10);
+            context.fillStyle = "Red";
+            context.fillRect(300, 55, 10, 10);
+
+            context.fillStyle = "black";
+            context.fillText("Correct Answer", 318, 30);
+            context.fillText("Wrong Answer", 318, 65);
+
+            var wrong = 6 - result;
+            rootElement.append("<br>Result:<br>&nbsp&nbsp&nbsp=> Right Answer: " + result +
+                "<br>&nbsp&nbsp&nbsp=> Wrong Answer: " + wrong);
+            result = 0;
+        }
+
+        function checkResult() {
+            if (this.value == this.name) {
+                result++;
+            }
+        }
+
+    }
+    )();
+</script>
+
+</html>

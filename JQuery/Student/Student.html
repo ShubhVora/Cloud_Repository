@@ -1,0 +1,243 @@
+<html>
+    <head>
+        <title> Student</title>
+    </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    
+    <body>
+        
+        <div class="text-center">
+
+            <h4 id="Heading" ></h4>
+        
+            <div >
+                <form id="data" method="POST">
+                <table>
+                    <tr>
+                        <td>Roll Number</td>
+                        <td><input type="text" name="Roll" id="Roll" ></td> 
+                    </tr>
+                    <tr>
+                        <td>Name </td>
+                        <td><input type="text" name="Name" id="Name" ></td> 
+                    </tr>
+                    <tr>
+                        <td>Age</td> 
+                        <td><input type="text" name="Age" id="Age" ></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="email" name="email" id="Email" ></td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td><input type="text" name="Date" id="Date" ></td>
+                    </tr>
+                    <tr>
+                        <td> 
+                        IsMale <td colspan="2"><input type="radio" name="Male" id="IsMale" value="true">Yes
+                               <input type="radio" name="Male" id="IsNotMale" value="false">No</td>
+                        </td>
+                    </tr>
+                    
+                </table>
+                </form>
+            </div>
+
+            <div id="SubmitButton">
+            </div>
+        </div>
+
+        <table id ="Display" class="table table-bordered">
+        </table>
+
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+        </script>
+
+        <script>
+            var link="http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/"
+            var student;
+            var dataFile;
+            retrieve();
+            createSubmitButton();
+
+            function createSubmitButton (){
+                $("#Heading").empty();
+                $("#Heading").text("Add New Student Information");
+                $("#SubmitButton").empty();
+                $("#data")[0].reset();
+                var submitButton =$("<button>Submit</button>");
+                submitButton.click(function (){
+                    accept(event);
+                });
+                $("#SubmitButton").append(submitButton);
+            }
+
+            function accept(event){
+                event.preventDefault();
+                if(validation()){
+                    upload(student);
+                }
+            }
+    
+            function validation(){
+                var rollNumber=$("#Roll").val();
+                var name=$("#Name").val();
+                var age=$("#Age").val();
+                var email=$("#Email").val();
+                var date=$("#Date").val();
+                var ismale=$("#IsMale:checked").val()?true:false;
+
+                if(rollNumber!="" && name!="" && age!="" && email!=""
+                && date!=""){
+                    $("#data")[0].reset();
+                    student={"rollNo":rollNumber,"name":name,"age":age,
+                            "email":email,"date":date,"isMale":ismale};
+                    
+                    return true;
+                }
+                else{
+                    alert("Fill all the details...");
+                    return false;
+                }
+            }
+
+            function upload(student){
+                var link="http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students"
+                    $.ajax({url:link,
+                        data:student,
+                        type:'POST',
+                        success:()=>{
+                        console.log("Successfully uploaded...");
+                        retrieve();
+                }});
+            }
+
+            function retrieve(){
+                    $.ajax({url:link,
+                    success:(text)=>{
+                    dataFile=text;
+                    console.log("Successfully Retrieved...");
+                    display();
+                }});
+            }
+
+            function display(){
+                $("#Display").empty();
+                $("#Display").append(`<tr><th>Roll Number</th><th>Name</th>
+                    <th>Age</th><th>Email</th><th>Date</th><th>IsMale</th><th>Edit</th>
+                    <th>Delete</th></tr>`);
+                for(var index=0;index< dataFile.length;index++){
+
+                    var tr=enterRowData(index);
+                    $("#Display").append(tr);
+                }
+            }
+        
+            function enterRowData(index){
+                var tr=$("<tr>");
+                var tdRoll=$("<td>"+dataFile[index].rollNo+"</td>");
+                var tdName=$("<td>"+dataFile[index].name+"</td>");
+                var tdAge=$("<td>"+dataFile[index].age+"</td>");
+                var tdEmail=$("<td>"+dataFile[index].email+"</td>");
+                var tdDate=$("<td>"+dataFile[index].date+"</td>");
+                var tdIsMale=$("<td>"+dataFile[index].isMale+"</td>");
+                var tdEditButton = $("<td>");
+                tdEditButton.append(createEditButton(index));
+                var tdDeleteButton=$("<td>");
+                tdDeleteButton.append(createDeleteButton(index));
+
+                tr.append(tdRoll);
+                tr.append(tdName);
+                tr.append(tdAge);
+                tr.append(tdEmail);
+                tr.append(tdDate);
+                tr.append(tdIsMale);
+                tr.append(tdEditButton);
+                tr.append(tdDeleteButton);
+                return tr;
+            }
+
+            function createEditButton(index){
+                var button=$("<button>Edit</button>");
+                button.attr("id",index);
+                console.log($(button).attr("id"));
+                button.click(function (){
+                    editData(this);
+                });
+                return button;
+            }
+
+            function editData(button){
+                $("#Heading").empty();
+                $("#Heading").append("Edit Information");
+                
+                var id=$(button).attr("id");
+                var rollId=dataFile[id].rollNo;
+                $("#Roll").val(dataFile[id].rollNo);
+                $("#Name").val(dataFile[id].name);
+                $("#Age").val(dataFile[id].age);
+                $("#Email").val(dataFile[id].email);
+                $("#Date").val(dataFile[id].date);
+                
+                if(dataFile[id].isMale)
+                    $("#IsMale").attr("checked",dataFile[id].isMale);
+                if(!dataFile[id].isMale)
+                    $("#IsNotMale").attr("checked",!dataFile[id].isMale);
+
+                $("#SubmitButton").empty();
+                $("#SubmitButton").append(createSaveButton(rollId));
+        }
+
+            function createSaveButton(rollId){
+                var saveButton =$("<button>Save</button>");
+                saveButton.click(function (){
+                    updateStudent(rollId);
+                });
+                return saveButton;
+            }
+
+            function updateStudent(rollId){
+                if(validation()){
+                    $.ajax({
+                        url:link+rollId,
+                        data:student,
+                        type:'PUT',
+                        success:()=>{
+                        console.log("Successfully updated...");
+                        retrieve();
+                    }});
+
+                    createSubmitButton();
+                }
+            }
+
+            function createDeleteButton(index){
+                var deleteButton =$("<button>Delete</button>");
+                var rollId=dataFile[index].rollNo;
+                deleteButton.click(function (){
+                    if(confirm("Are you sure want to delete selected data?")){
+                        deleteStudent(rollId);
+                    }
+                });
+                return deleteButton;
+            }
+        
+            function deleteStudent(rollId){
+                $.ajax({
+                    url:link+rollId,
+                    type:'DELETE',
+                    success:()=>{
+                    console.log("Successfully deleted...");
+                    retrieve();
+                    }});
+
+                createSubmitButton();
+                   
+            }
+       
+        </script>
+    
+    </body>
+
+</html>

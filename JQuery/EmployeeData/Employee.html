@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Employee Data</title>
+
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+        
+
+    </head>
+    <body>
+        <table id=Employee >
+            <tr>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                <th>Designation</th>
+                <th>Reportee</th>
+                <th>DOJ</th>
+                <th>Salary</th>
+                <th>Null Value</th>
+                <th>Number</th>
+            </tr>
+        </table>
+    </body>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+
+    <script>
+        (function(){
+            
+        var http=new XMLHttpRequest();
+        var fileData;
+        var employee;
+        
+        http.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200 ){
+                        fileData=http.responseText;
+                        console.log(fileData);
+                        employee = fileData.split("\n");
+
+                        console.log("\n"+employee[0]);
+
+                        createTable();
+            }
+        }
+        http.open("GET","https://swabhav-tech.firebaseapp.com/emp.txt",true);
+        http.send();
+
+        function createTable(){
+
+            for(var count =0;count<employee.length; count++){
+                var tr = $("<tr>");
+                var currentEmployee = employee[count].split(",");
+                    
+                for(var countColumn=0;countColumn<currentEmployee.length;countColumn++)
+                {
+                    var td=$("<td>");
+                    td.append(currentEmployee[countColumn]);
+                    tr.append(td);    
+                }
+                
+                $("#Employee").append(tr);
+            }
+        }
+
+        })();
+    </script>
+</html>

@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Number Api</title>
+    </head>
+    <body>
+        Enter a number:<input type="text" id="Number">
+        <button onclick="submit()">Submit</button>
+        <span>Searched Number: <span id="SearchNumberCount" ></span></span>
+        <ul id="Result">
+        </ul>
+    </body>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js">
+    </script>
+
+    <script>
+        
+        var numberApiArray;
+        
+        (()=>{
+            numberApiArray=retrieve();
+            display();
+        })();
+
+        function submit(){    
+            var number =parseInt($("#Number").val());
+            var link="http://numbersapi.com/"+number;
+        
+            $.ajax({url:link,success: (text)=>{
+
+                var list=$("ul#Result");
+                var momentObject=moment().format('MMMM DD YYYY, h:mm:ss a');
+                console.log(momentObject);
+                numberApiArray.push({"text":text,"moment":momentObject,"number":parseInt(number)});
+                display();
+                
+                store();
+            }
+            });
+        }
+
+        function createDeleteButton(count){
+            var button=$("<button>Delete</button>");
+            button.attr("id",count);
+            button.click(function (){
+                if(confirm("Are you sure?")){
+                numberApiArray.splice($(this).attr("id"),1);
+                store();
+                display();
+                }
+            });
+            return button;
+        }
+
+        function display(){
+            $("#SearchNumberCount").text(numberApiArray.length);
+            var list=$("ul#Result");
+            list.empty();
+            for(var count=numberApiArray.length-1;count>=0;count--){
+                var minutes=moment(numberApiArray[count].moment,'MMMM DD YYYY, h:mm:ss a').fromNow(); 
+                var button = createDeleteButton(count);
+                var text=backgroundText(count);
+                var item=$("<li>"+minutes+"</li>");
+                list.append(item);
+                list.append(text);
+                list.append(button);
+            }
+        }
+
+        function backgroundText(count){
+            var text=$("<p>");
+            text.css("color","red");
+            if(numberApiArray[count].number%2==0){
+                text.css("color","green");
+            }
+
+            text.append("Text: "+numberApiArray[count].text);
+            
+            return text;
+        }
+
+        function store(){
+            localStorage.setItem("NumberApi",JSON.stringify(numberApiArray));
+        }
+
+        function retrieve(){
+            var numberDetail=JSON.parse(localStorage.getItem("NumberApi"));
+            if(numberDetail){
+                return numberDetail;
+            }
+            return [];
+        }
+        
+    </script>
+</html>

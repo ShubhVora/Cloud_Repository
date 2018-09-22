@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>
+            Hello World
+        </title>
+    </head>
+
+    <body>
+        <p></p>
+        <button>Change Text</button>
+    </body>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+    </script>
+
+    <script>
+            $("p").append("Hello World");
+            $("button").click(print);
+
+            function print(){
+                $("p").empty();
+                $("p").append("Text is Change");
+            }
+    </script>
+</html>

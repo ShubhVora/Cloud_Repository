@@ -1,0 +1,29 @@
+{
+    "QuestionAnswer":[
+        {"question":"What is the capital of India?",
+            "options":["new delhi","shimla","calcutta","J&K"],"answer":"new delhi"},
+        {"question":"What is the capital of Maharashtra?",
+            "options":["mumbai","bombay","nagpur","Chennai"],"answer":"mumbai"}, 
+        {"question":"4*5 is equal to x. What is the value of x?",
+            "options":["02","20","10"],"answer":"20"},
+        {"question":"Which of the following is an Integer?",
+            "options":["A","5.0","5"],"answer":"5"},
+        {"question":"What is the colour of blood?",
+            "options":["black","white","red"],"answer":"red"},
+        {"question":"9*9 is equal to x. What is the value of x?",
+            "options":["71","81","91"],"answer":"81"},
+
+        {"question":"Total how many alphabats are present in english?",
+            "options":["24","25","26","27"],"answer":"26"},
+        {"question":"Total number of states in 'India'?",
+            "options":["28","29","25","27"],"answer":"29"}, 
+        {"question":"Total number of Union Territories in 'India'?",
+            "options":["6","5","7"],"answer":"7"},
+        {"question":"Which of the following is not an Integer?",
+            "options":["6","7.0","5"],"answer":"5"},
+        {"question":"10 % 2 is equal to?",
+            "options":["0","5","6"],"answer":"0"},
+        {"question":"8*9 is equal to x. What is the value of x?",
+            "options":["72","60","91"],"answer":"72"}   
+    ]
+}
